@@ -1,0 +1,55 @@
+---
+title: "CodeBrain AI"
+description: "AI-Powered Codebase Understanding & Documentation Assistant with CI/CD Diagnostic Integration."
+date: "10.2026"
+tech: ["Python", "FastAPI", "React 19", "TypeScript", "Tree-sitter", "FAISS", "Docker"]
+---
+
+## Introduction
+
+**CodeBrain AI** is an intelligent developer acceleration platform designed to eliminate the steep onboarding curve of large, legacy, and multi-repository software systems. Rather than treating code as raw text, CodeBrain combines syntax-aware Abstract Syntax Tree (AST) parsing with dense vector indexing and Large Language Model reasoning.
+
+It allows engineers, technical leads, and open-source contributors to query unfamiliar codebases in natural language, generate living system architecture diagrams, produce verified inline documentation, and diagnose CI/CD build failures autonomously.
+
+## The Problem
+
+Modern codebases scale rapidly across tens of thousands of files, heterogeneous frameworks, and distributed microservices. Engineering teams face common friction points:
+
+1. **Slow Developer Onboarding:** New hires often spend weeks mapping call graphs, identifying boundary contracts, and understanding how data flows across service layers.
+2. **Outdated Documentation:** Manual documentation drifts within weeks of pull request merges, leading to stale architecture diagrams and unreliable guides.
+3. **Complex CI/CD Debugging:** Pipeline logs in Jenkins or GitHub Actions produce thousands of lines of terminal output where root-cause errors are buried under cascade failures.
+
+## Architectural Approach
+
+CodeBrain AI solves these bottlenecks through a modular, four-pillar architecture:
+
+### 1. Multi-Language AST Parsing
+Using **Tree-sitter**, CodeBrain parses Python, TypeScript, Java, and Go files into concrete syntax trees. It extracts:
+- Class hierarchies and method definitions
+- Import/export dependency graphs
+- Function signatures and type annotations
+- Docstrings and inline comment associations
+
+### 2. Semantic Vector Retrieval (Hybrid RAG)
+Extracted code symbols and semantic blocks are chunked based on logical scope (function-level rather than arbitrary token boundaries). High-dimensional embeddings are generated and indexed using **FAISS** alongside lexical search for exact identifier resolution.
+
+### 3. Agentic Explanation & Context Synthesis
+When a developer queries "How does authentication middleware validate session tokens across microservices?", CodeBrain traverses the AST dependency graph, pulls the relevant route handlers and security decorators, and synthesizes a step-by-step architectural breakdown complete with exact file citations.
+
+### 4. CI/CD Diagnostic Webhook
+Integrated into GitHub Actions and Jenkins pipelines, CodeBrain captures exit codes and terminal logs on job failure, pinpoints the offending commit diff, and posts an automated pull request comment explaining the root cause alongside proposed patches.
+
+## Key Capabilities
+
+- **Natural Language Repository Search:** Ask functional and structural questions about any cloned repository.
+- **Automated Living Documentation:** Generate Markdown architectural guides and Mermaid sequence diagrams that update with Git commits.
+- **Fast Interactive Web UI:** Modern React 19 interface with Monaco Editor code highlighting and split-pane response inspection.
+- **Contract-First FastAPI Backend:** Asynchronous REST endpoints with full Pydantic schema validation and Swagger OpenAPI docs.
+- **Zero-Cloud Local Deployment Option:** Containerized via Docker Compose with local embedding models for strict enterprise privacy.
+
+## Tech Stack & Tooling
+
+- **Backend:** Python 3.12, FastAPI, Uvicorn, Tree-sitter, FAISS, LangChain, Pydantic v2
+- **Frontend:** React 19, Next.js, TypeScript, Tailwind CSS, Monaco Editor, Lucide Icons
+- **Infrastructure:** Docker, Docker Compose, GitHub Actions, Linux (Ubuntu)
+

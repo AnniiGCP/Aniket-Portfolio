@@ -1,0 +1,50 @@
+---
+title: "ArcadeVerse"
+description: "Community-driven Google Cloud Arcade analytics, milestone tracker, and swag tier readiness engine."
+date: "09.2026"
+tech: ["React", "TypeScript", "Tailwind CSS", "Express", "MongoDB", "Vercel"]
+---
+
+## Introduction
+
+**ArcadeVerse** is an independent, community-driven cloud analytics and gamification platform built for developers, students, and cloud enthusiasts participating in the **Google Cloud Arcade Program**.
+
+It delivers real-time milestone tracking, public profile badge verification, automated point ledger auditing, and projection algorithms that calculate exactly how many skill badges or game arcade points a user needs to reach their target swag tiers.
+
+## Verified Impact & Reach
+
+- **5,486+ Unique Website Visitors** tracked across active program cohorts.
+- **4,987+ Public Cloud Profiles Analyzed** and audited.
+- **High User Engagement** with interactive readiness meters and cohort leaderboard rankings.
+
+## The Problem
+
+The Google Cloud Arcade Program rewards hands-on cloud labs across Compute Engine, BigQuery, Kubernetes, and Cloud Run. However:
+- The native learning portals spread badge completions, game completions, and trivia points across separate pages.
+- Participants frequently struggle to compute cumulative points, verify eligible bonus badges, or calculate how many remaining points they need before cohort deadlines.
+- Manual tracking in spreadsheets is tedious, error-prone, and lacks real-time verification.
+
+## Core Features & Architecture
+
+### 1. Automated Profile Verification
+Users paste their public Google Cloud Skills Boost profile link. The platform parses verified public badges, deduplicates historical attempts, and populates a unified analytics dashboard.
+
+### 2. Tier Readiness & Milestones Calculator
+Dynamic algorithmic calculators evaluate current points against Standard, Advanced, and Premium swag tiers, providing participants with clear, actionable lab recommendations.
+
+### 3. High-Performance Client Architecture
+Built with modern React and TypeScript, ArcadeVerse delivers a lightweight, accessible UI featuring:
+- Responsive grid dashboards with responsive charts
+- Dark-mode optimized visual themes
+- Instant client-side filtering across badge catalogs and quest roadmaps
+
+### 4. Scalable Microservice Backend
+- Express.js and Node.js backend handles profile aggregation and data validation.
+- MongoDB persistent caching reduces external load while maintaining high availability.
+- Deployed on Vercel with edge caching for low-latency worldwide delivery.
+
+## Engineering Highlights
+
+- **Data Privacy & Defensive Design:** Operates exclusively on publicly shared profile URLs without requiring user passwords or personal credentials.
+- **Resilient Fallbacks:** Implements exponential backoff and localized cache layers to maintain continuous service availability even during high-traffic cohort closing dates.
+

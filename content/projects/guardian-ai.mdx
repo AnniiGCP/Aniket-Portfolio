@@ -1,0 +1,35 @@
+---
+title: "Guardian AI"
+description: "Real-time threat detection system for child online grooming identification using dual-path NLP classification and audio transcription."
+date: "05.2026"
+tech: ["FastAPI", "PyTorch", "DistilBERT", "Whisper STT", "WebSockets", "PostgreSQL"]
+---
+
+## Introduction
+
+**Guardian AI** is an AI-powered safety platform engineered to safeguard minors across online gaming lobbies, voice chat channels, and messaging platforms. The system identifies predatory behavior, grooming indicators, manipulation tactics, and coercive language patterns in real time.
+
+## System Architecture
+
+Guardian AI operates an asynchronous processing pipeline capable of handling both textual streams and streamed voice audio.
+
+### 1. Audio Processing Pipeline
+- Incoming voice channels are sampled and transcribed locally using **OpenAI Whisper** running on accelerated local or serverless GPU infrastructure.
+- Zero audio retention policies guarantee user privacy while enabling instantaneous transcript analysis.
+
+### 2. Dual-Path NLP Classification
+Guardian AI deploys a two-stage evaluation engine:
+- **Fast-Path Screening:** A fine-tuned **DistilBERT** classification model evaluates incoming chat tokens in sub-50ms latency, scoring messages for coercive sentiment, contact solicitation, and secrecy pressure.
+- **Deep-Path Contextual Reasoning:** Flagged conversations are escalated to an LLM context evaluation agent that analyzes multi-turn conversational trajectories to minimize false positives while detecting subtle psychological grooming patterns.
+
+### 3. Real-Time Alert Dispatch
+- Bi-directional **WebSockets** push instant severity-ranked alerts to moderator consoles.
+- Automated audit trails with tamper-evident message timelines for administrative review.
+
+## Tech Stack
+
+- **Backend & Inference:** Python, FastAPI, PyTorch, Hugging Face Transformers (DistilBERT), OpenAI Whisper
+- **Storage & Queues:** PostgreSQL, SQLAlchemy, Redis
+- **Networking:** Asynchronous WebSockets, Uvicorn
+- **Deployment:** Docker, Modal Cloud serverless ML workers
+

@@ -1,0 +1,41 @@
+---
+title: "QuizGenAI"
+description: "Adaptive Automated Quiz Generator & Assessment Platform with Contract-First API Architecture."
+date: "08.2026"
+tech: ["FastAPI", "React", "SQLite", "Pydantic", "SQLAlchemy", "LLM APIs"]
+---
+
+## Recognition
+
+🥈 **Second Place (Runner-Up) Winner** — National Level **HIRE-4-THON Hackathon 2026**, competing with team *Unpaid Labors*. Recognized by industry judges for contract-first engineering rigor, schema validation, and complete end-to-end execution.
+
+## Introduction
+
+**QuizGenAI** is a dynamic assessment and automated evaluation platform designed to generate high-quality, concept-calibrated quizzes from technical source materials, documents, and syllabus specifications.
+
+Unlike basic prompting interfaces, QuizGenAI enforces strict, validated JSON response contracts from foundational LLMs, ensuring that every multiple-choice question, explanation, distractor, and difficulty weighting strictly adheres to an authoritative schema before database persistence.
+
+## Architecture & Engineering Principles
+
+### 1. Contract-First API Design
+Built with **FastAPI** and **Pydantic v2**, all request payloads and generative responses are validated at the network boundary. If an LLM hallucination violates the expected response schema, a resilient retry loop automatically repairs and coerces the output into conforming structures.
+
+### 2. Timed Assessment Engine
+- Real-time client-side quiz countdowns with auto-submission triggers.
+- Anti-tamper state synchronization ensuring scores cannot be manipulated via browser developer tools.
+- Granular post-exam performance breakdowns with instant explanation references.
+
+### 3. Developer Streak & Analytics Visualizer
+Includes an interactive contribution-style activity heatmap tracking daily developer assessment streaks and mastery milestones over time.
+
+### 4. Relational Data Layer
+- Backed by **SQLAlchemy** ORM and **SQLite** for clean ACID-compliant persistence.
+- Easily migratable to PostgreSQL for multi-tenant production deployments.
+- Seed data fixtures and migration scripts for rapid local developer provisioning.
+
+## Tech Stack
+
+- **Backend:** Python 3.11+, FastAPI, Pydantic, SQLAlchemy, Uvicorn
+- **Frontend:** React, TypeScript, Tailwind CSS, Vite
+- **Data:** SQLite / PostgreSQL, Alembic
+
