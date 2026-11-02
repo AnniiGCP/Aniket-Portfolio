@@ -56,7 +56,24 @@ function getYearRange(contributions: { date: string }[]) {
 export async function GitHubContributions() {
   const data = await getGitHubContributions(siteConfig.githubUsername);
 
-  if (!data) return null;
+  if (!data) {
+    return (
+      <Container>
+        <SectionHeading title="GitHub Activity" uppercase />
+        <div className="rounded-xl border border-border/60 bg-card/40 p-6 text-center text-sm text-secondary">
+          <p>Real-time GitHub activity is currently synchronizing.</p>
+          <Link
+            href={`https://github.com/${siteConfig.githubUsername}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex items-center gap-1 font-medium text-foreground underline-offset-4 hover:underline"
+          >
+            Visit @{siteConfig.githubUsername} on GitHub &rarr;
+          </Link>
+        </div>
+      </Container>
+    );
+  }
 
   const weeks = groupContributionsByWeek(data.contributions);
   const monthLabels = getMonthLabels(weeks);

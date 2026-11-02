@@ -1,5 +1,8 @@
 "use client";
 
+import { TechIconPill } from "@/components/ui/tech-icon-pill";
+
+
 import { Code, Plus, X } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useState } from "react";
@@ -78,14 +81,9 @@ function ExperienceCard({
             ))}
           </div>
           {job.tech && (
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 pt-1">
               {job.tech.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-lg border border-border bg-background/60 px-2.5 py-1 text-xs font-medium text-secondary"
-                >
-                  {item}
-                </span>
+                <TechIconPill key={item} name={item} size="sm" />
               ))}
             </div>
           )}

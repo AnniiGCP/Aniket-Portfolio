@@ -2,40 +2,82 @@
 title: "QuizGenAI"
 description: "Adaptive Automated Quiz Generator & Assessment Platform with Contract-First API Architecture."
 date: "08.2026"
-tech: ["FastAPI", "React", "SQLite", "Pydantic", "SQLAlchemy", "LLM APIs"]
+tech: ["FastAPI", "React", "SQLite", "Pydantic", "SQLAlchemy", "Python"]
 ---
 
 ## Recognition
 
-🥈 **Second Place (Runner-Up) Winner** — National Level **HIRE-4-THON Hackathon 2026**, competing with team *Unpaid Labors*. Recognized by industry judges for contract-first engineering rigor, schema validation, and complete end-to-end execution.
+🥈 **Second Place (Runner-Up) Winner** — National Level **HIRE-4-THON Hackathon 2026**, built with team *Unpaid Labors*. Recognized by industry judges for contract-first engineering rigor, schema validation, and end-to-end full-stack execution under tight hackathon deadlines. Led to an internship opportunity with Dyashin Technosoft.
 
 ## Introduction
 
-**QuizGenAI** is a dynamic assessment and automated evaluation platform designed to generate high-quality, concept-calibrated quizzes from technical source materials, documents, and syllabus specifications.
+**QuizGenAI** is an adaptive, dynamic assessment and automated evaluation platform designed to generate concept-calibrated quizzes from technical source materials, curriculum syllabi, and documentation.
 
-Unlike basic prompting interfaces, QuizGenAI enforces strict, validated JSON response contracts from foundational LLMs, ensuring that every multiple-choice question, explanation, distractor, and difficulty weighting strictly adheres to an authoritative schema before database persistence.
+Unlike basic LLM prompting demos that break on unstructured text responses, QuizGenAI enforces strict, validated JSON response contracts from language models. Every generated question, distractor, explanation, and difficulty level strictly conforms to authoritative Pydantic schemas before database persistence.
 
-## Architecture & Engineering Principles
+## Why I built it
 
-### 1. Contract-First API Design
-Built with **FastAPI** and **Pydantic v2**, all request payloads and generative responses are validated at the network boundary. If an LLM hallucination violates the expected response schema, a resilient retry loop automatically repairs and coerces the output into conforming structures.
+In academic and developer hiring environments, educators and recruiters spend dozens of hours manually writing technical quizzes. While LLMs can generate questions quickly, raw model output frequently hallucinates malformed choices, forgets correct answer keys, or produces inconsistent formatting that crashes frontend assessment interfaces.
 
-### 2. Timed Assessment Engine
-- Real-time client-side quiz countdowns with auto-submission triggers.
-- Anti-tamper state synchronization ensuring scores cannot be manipulated via browser developer tools.
-- Granular post-exam performance breakdowns with instant explanation references.
+During the HIRE-4-THON Hackathon, our team designed QuizGenAI to solve this reliability problem: an API-first quiz engine with strict boundary validation, timed exam workflows, and developer streak visualization.
 
-### 3. Developer Streak & Analytics Visualizer
-Includes an interactive contribution-style activity heatmap tracking daily developer assessment streaks and mastery milestones over time.
+## Core features
 
-### 4. Relational Data Layer
-- Backed by **SQLAlchemy** ORM and **SQLite** for clean ACID-compliant persistence.
-- Easily migratable to PostgreSQL for multi-tenant production deployments.
-- Seed data fixtures and migration scripts for rapid local developer provisioning.
+- **Contract-first API architecture:** All generative payloads and client requests are validated at the network boundary using Pydantic v2 models.
+- **Dynamic quiz generation:** Generate multiple-choice assessments tailored to specific technologies, concepts, and difficulty thresholds.
+- **Timed assessment engine:** Client-side countdown timers with auto-submission triggers and anti-tamper client state guards.
+- **Immediate explanatory feedback:** Instant post-exam score breakdowns with concept-by-concept explanations for incorrect answers.
+- **Developer activity streak visualizer:** GitHub-style contribution heatmap tracking daily practice consistency and topic mastery.
+- **Relational data persistence:** Backed by SQLAlchemy ORM with SQLite for rapid local development and seamless PostgreSQL production readiness.
 
-## Tech Stack
+## How it works
 
-- **Backend:** Python 3.11+, FastAPI, Pydantic, SQLAlchemy, Uvicorn
-- **Frontend:** React, TypeScript, Tailwind CSS, Vite
-- **Data:** SQLite / PostgreSQL, Alembic
+1. **Topic and difficulty selection:** An instructor or student specifies a technology (e.g. Python AsyncIO, Docker Networking), difficulty tier, and question count.
+2. **Constrained generation prompt:** The FastAPI backend constructs a structured prompt specifying strict JSON-mode response criteria.
+3. **Pydantic schema validation:** The LLM's response is parsed against the `QuizSchema` model. If a field or type violation is detected, an automatic validation retry repairs the output.
+4. **Database persistence:** Validated questions and metadata are committed to the relational database with unique session identifiers.
+5. **Timed exam delivery:** The student completes the quiz within the enforced time limit.
+6. **Scoring & streak recording:** On submission, the backend grades responses, computes the score percentage, records the attempt in the user's activity streak ledger, and returns the explanatory review.
 
+## System architecture
+
+QuizGenAI follows clean architecture separation:
+- **Presentation layer:** Responsive React application built with TypeScript and Tailwind CSS, featuring timed exam views, score cards, and activity grids.
+- **Backend service:** High-performance asynchronous FastAPI service running on Uvicorn, handling question generation, evaluation, and user progress endpoints.
+- **Validation layer:** Pydantic v2 schemas guaranteeing end-to-end type safety between the LLM, database, and client interface.
+- **Data storage:** Relational persistence handled by SQLAlchemy ORM with SQLite, with full Alembic migration support for production database provisioning.
+
+## Tech stack
+
+- **Python & FastAPI:** Asynchronous API service, route handlers, and dependency injection.
+- **Pydantic v2:** Network contract definition, schema validation, and structured output coercion.
+- **React & TypeScript:** Interactive assessment UI, timer management, and real-time state.
+- **Tailwind CSS:** Modern dark and light theme styles.
+- **SQLAlchemy & SQLite:** Object-relational mapping, ACID transaction safety, and schema migrations.
+- **LLM APIs:** Foundation model inference with JSON-mode structured output generation.
+
+## Engineering challenges
+
+### Guaranteeing valid quiz schemas under pressure
+LLMs can occasionally output markdown code blocks or invalid JSON syntax. We implemented a resilient backend coercion pipeline that strips markdown delimiters, verifies required schema keys, and re-prompts the model with explicit error tracebacks if validation fails.
+
+### Synchronizing client timers with backend submission deadlines
+To prevent browser-based timer manipulation during exams, the backend stores the official start timestamp and validates that submissions arrive within the allowed time delta plus a minor network grace window.
+
+## Current implementation status
+
+- **API contracts:** Complete Pydantic schemas for questions, options, submissions, and evaluations are fully implemented.
+- **Frontend client:** Complete exam flow (topic selection, timed quiz, review screen, and streak heatmap) is functional.
+- **Hackathon delivery:** Successfully demoed to live judges at HIRE-4-THON 2026, securing Second Place out of national contenders.
+
+## Future improvements
+
+- **Adaptive difficulty scaling:** Adjusting question difficulty dynamically based on real-time performance during the quiz.
+- **Document upload ingestion:** Generating quizzes directly from uploaded PDFs, lecture slides, or markdown documentation.
+- **Multi-user team leaderboards:** Competitive assessment lobbies for engineering cohorts and study groups.
+
+## What I learned
+
+Competing in HIRE-4-THON 2026 and building QuizGenAI reinforced the importance of contract-first development. Enforcing strict schema boundaries early in the engineering lifecycle saves hours of frontend debugging and ensures resilient user experiences.
+
+[Explore QuizGenAI on GitHub](https://github.com/AnniiGCP/QuizGenAI)

@@ -2,49 +2,90 @@
 title: "ArcadeVerse"
 description: "Community-driven Google Cloud Arcade analytics, milestone tracker, and swag tier readiness engine."
 date: "09.2026"
-tech: ["React", "TypeScript", "Tailwind CSS", "Express", "MongoDB", "Vercel"]
+tech: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Vercel"]
 ---
 
 ## Introduction
 
-**ArcadeVerse** is an independent, community-driven cloud analytics and gamification platform built for developers, students, and cloud enthusiasts participating in the **Google Cloud Arcade Program**.
+**ArcadeVerse** is an independent, community-driven cloud analytics and gamification platform built for developers, students, and cloud professionals participating in the **Google Cloud Arcade Program**.
 
-It delivers real-time milestone tracking, public profile badge verification, automated point ledger auditing, and projection algorithms that calculate exactly how many skill badges or game arcade points a user needs to reach their target swag tiers.
+It provides real-time milestone tracking, public profile badge auditing, automated point ledger calculation, and readiness algorithms that project how many skill badges or game arcade points a user needs to reach their target swag tiers.
 
-## Verified Impact & Reach
+## Verified impact & reach
 
-- **5,486+ Unique Website Visitors** tracked across active program cohorts.
-- **4,987+ Public Cloud Profiles Analyzed** and audited.
-- **High User Engagement** with interactive readiness meters and cohort leaderboard rankings.
+- **5,486+ unique website visitors** tracked across active program cohorts.
+- **4,987+ public cloud profiles analyzed** and audited.
+- **Active community adoption** among cloud learners seeking real-time milestone projection and progress verification.
 
-## The Problem
+## Why I built it
 
-The Google Cloud Arcade Program rewards hands-on cloud labs across Compute Engine, BigQuery, Kubernetes, and Cloud Run. However:
-- The native learning portals spread badge completions, game completions, and trivia points across separate pages.
-- Participants frequently struggle to compute cumulative points, verify eligible bonus badges, or calculate how many remaining points they need before cohort deadlines.
-- Manual tracking in spreadsheets is tedious, error-prone, and lacks real-time verification.
+The Google Cloud Arcade Program rewards hands-on cloud labs across Compute Engine, BigQuery, Kubernetes, and Cloud Run. However, participants face recurring friction points:
 
-## Core Features & Architecture
+1. **Fragmented progress tracking:** Badge completions, game completions, and trivia challenges are scattered across disparate learning pages.
+2. **Complex point ledger rules:** Calculating cumulative points, bonus point multipliers, and eligible milestone badges manually is tedious and error-prone.
+3. **Deadline uncertainty:** Participants often do not know whether they are on track to achieve Standard, Advanced, or Premium swag tiers before cohort closing dates.
 
-### 1. Automated Profile Verification
-Users paste their public Google Cloud Skills Boost profile link. The platform parses verified public badges, deduplicates historical attempts, and populates a unified analytics dashboard.
+I built ArcadeVerse to provide a single, verified analytics dashboard where users can paste their public profile URL and immediately understand their standing, point totals, and remaining requirements.
 
-### 2. Tier Readiness & Milestones Calculator
-Dynamic algorithmic calculators evaluate current points against Standard, Advanced, and Premium swag tiers, providing participants with clear, actionable lab recommendations.
+## Core features
 
-### 3. High-Performance Client Architecture
-Built with modern React and TypeScript, ArcadeVerse delivers a lightweight, accessible UI featuring:
-- Responsive grid dashboards with responsive charts
-- Dark-mode optimized visual themes
-- Instant client-side filtering across badge catalogs and quest roadmaps
+- **Automated public profile audit:** Parse and verify publicly shared Google Cloud Skills Boost profile pages without requiring user credentials.
+- **Milestone & swag tier readiness engine:** Algorithmic projection calculators that compare current point ledgers against cohort swag tier thresholds.
+- **Point ledger breakdown:** Granular itemization of Arcade Game Points, Skill Badge Points, Trivia Points, and Special Milestone Bonuses.
+- **Responsive dark-mode UI:** Lightweight, high-performance interface with interactive tier progress rings and instant client-side filtering.
+- **Privacy-first architecture:** Operates exclusively on publicly published profile links; zero passwords, private tokens, or sensitive account data are ever stored.
+- **Edge-cached delivery:** Built on React and deployed on Vercel with edge caching for instant global page loads.
 
-### 4. Scalable Microservice Backend
-- Express.js and Node.js backend handles profile aggregation and data validation.
-- MongoDB persistent caching reduces external load while maintaining high availability.
-- Deployed on Vercel with edge caching for low-latency worldwide delivery.
+## How it works
 
-## Engineering Highlights
+1. **Profile submission:** A learner submits their public Google Cloud Skills Boost profile link.
+2. **Metadata extraction:** The backend fetches the public HTML document, validates the profile identifier, and extracts earned badge titles, completion dates, and quest categories.
+3. **Deduplication & verification:** Duplicate attempts, legacy expired badges, and non-eligible credentials are automatically filtered out.
+4. **Point aggregation:** The scoring engine applies authoritative cohort rules to compute totals across arcade games, skill badges, and milestone thresholds.
+5. **Readiness projection:** The system calculates the shortest path of remaining labs required to reach the next swag tier.
+6. **Dashboard rendering:** The frontend presents an interactive visual breakdown with completion checklists and progress meters.
 
-- **Data Privacy & Defensive Design:** Operates exclusively on publicly shared profile URLs without requiring user passwords or personal credentials.
-- **Resilient Fallbacks:** Implements exponential backoff and localized cache layers to maintain continuous service availability even during high-traffic cohort closing dates.
+## System architecture
 
+ArcadeVerse is built with a separated client-server architecture:
+- **Presentation layer:** Modern React application with TypeScript and Tailwind CSS, featuring accessible data tables and animated progress visualizers.
+- **Backend services:** Node.js and Express microservice responsible for profile parsing, rate limiting, and cache invalidation.
+- **Persistent cache:** MongoDB document database used to cache verified profile metadata, minimizing redundant external HTTP requests and maintaining fast response times.
+- **Open-source showcase repository:** The presentation layer is published openly in the `arcadeverse-dev` repository, while proprietary scraping and calculation engines remain safely isolated in the private repository.
+
+## Tech stack
+
+- **React & TypeScript:** Client application state, component architecture, and type safety.
+- **Tailwind CSS:** Responsive utility styling and dark-mode color palette.
+- **Node.js & Express:** Backend REST service and rate-limited aggregation endpoints.
+- **MongoDB:** Caching layer for audited profile snapshots.
+- **Vercel:** Production continuous deployment, edge CDN routing, and asset optimization.
+
+## Engineering challenges
+
+### Handling high cohort-deadline traffic
+During the final days of Google Cloud Arcade cohorts, visitor traffic spikes dramatically as thousands of participants verify their point totals simultaneously. Implementing caching layers with MongoDB and exponential backoff ensured continuous uptime without external rate limiting.
+
+### Parsing dynamic public profile layouts
+The structure of Google Cloud Skills Boost profile pages occasionally changes. Designing resilient HTML parsing routines that rely on semantic CSS classes and text tokens rather than brittle DOM indices was essential to maintaining parsing reliability.
+
+### Defensive data privacy
+ArcadeVerse strictly avoids collecting user emails, passwords, or cloud credentials. All calculations occur solely on public URLs that users deliberately submit for auditing.
+
+## Current implementation status
+
+- **Live platform:** Actively hosted at `arcadeverse.vercel.app` and serving community participants.
+- **Open-source showcase:** Public repository `AnniiGCP/arcadeverse-dev` contains the complete frontend component library and presentation code.
+- **Verified metrics:** Over 5,486 unique visitors and 4,987 profiles analyzed to date.
+
+## Future improvements
+
+- **Cohort trend analytics:** Anonymized aggregate statistics showing community-wide completion rates across popular lab quests.
+- **Personalized lab recommendations:** Direct links to recommended labs that yield the highest point return for remaining tier gaps.
+- **Exportable milestone cards:** Shareable achievement badges formatted for LinkedIn and Twitter.
+
+## What I learned
+
+Developing ArcadeVerse demonstrated the power of community-focused engineering. Building a tool that genuinely solves an everyday friction point for thousands of users taught me invaluable lessons in traffic management, defensive design, and real-world web performance.
+
+[Visit ArcadeVerse Live](https://arcadeverse.vercel.app) · [Explore Frontend Repository](https://github.com/AnniiGCP/arcadeverse-dev)

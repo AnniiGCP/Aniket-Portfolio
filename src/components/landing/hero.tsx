@@ -36,8 +36,8 @@ export function Hero() {
         <div className="corner-frame relative h-[calc(var(--grid-cell-size)*4)] overflow-visible">
           <div className="relative size-full overflow-hidden border border-foreground/15">
           <Image
-            src="/assets/aniket-header.jpeg"
-            alt="Aniket header"
+            src="/assets/gods-plan-banner.jpeg"
+            alt="God's Plan header"
             fill
             priority
             sizes="(max-width: 640px) 100vw, 720px"

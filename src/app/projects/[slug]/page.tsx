@@ -1,3 +1,4 @@
+import { TechIconPill } from "@/components/ui/tech-icon-pill";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -84,14 +85,9 @@ export default async function ProjectDetailPage({
           )}
         </div>
         {tech.length > 0 && (
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-5 flex flex-wrap gap-2.5">
             {tech.map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-border bg-muted px-2.5 py-1 font-mono text-[11px]"
-              >
-                {item}
-              </span>
+              <TechIconPill key={item} name={item} size="md" />
             ))}
           </div>
         )}

@@ -2,7 +2,7 @@ export const heroConfig = {
   name: "Aniket Yadav",
   email: "aniketyadav0078@gmail.com",
   calendarUrl: "mailto:aniketyadav0078@gmail.com?subject=Connect%20with%20Aniket",
-  bio: "I'm a software engineer and computer science student passionate about building practical software products, AI-powered developer tools, and reliable cloud-based applications. I enjoy exploring how software engineering, artificial intelligence, and automation come together to solve real-world problems.",
+  bio: "I'm an AI and cloud-focused software engineer building full-stack applications, intelligent developer tools, and practical automation solutions.",
   avatar: "/assets/avatar.png",
   avatarSmile: "/assets/avatar-smile.png",
   timezone: "Asia/Kolkata",
@@ -10,6 +10,11 @@ export const heroConfig = {
 };
 
 export const socialLinks = [
+  {
+    name: "X",
+    href: "https://x.com/AniketYadav1105",
+    icon: "x" as const,
+  },
   {
     name: "LinkedIn",
     href: "https://linkedin.com/in/aniketyadav9099/",

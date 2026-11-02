@@ -2,34 +2,80 @@
 title: "Guardian AI"
 description: "Real-time threat detection system for child online grooming identification using dual-path NLP classification and audio transcription."
 date: "05.2026"
-tech: ["FastAPI", "PyTorch", "DistilBERT", "Whisper STT", "WebSockets", "PostgreSQL"]
+tech: ["FastAPI", "PyTorch", "Python", "PostgreSQL", "Docker"]
 ---
 
 ## Introduction
 
-**Guardian AI** is an AI-powered safety platform engineered to safeguard minors across online gaming lobbies, voice chat channels, and messaging platforms. The system identifies predatory behavior, grooming indicators, manipulation tactics, and coercive language patterns in real time.
+**Guardian AI** is an AI-powered safety platform engineered to safeguard minors across online gaming lobbies, voice chat channels, and community messaging platforms. The system identifies predatory behavior, grooming indicators, manipulation tactics, and coercive language patterns in real time.
 
-## System Architecture
+By integrating local speech-to-text transcription with a two-stage NLP classification pipeline, Guardian AI empowers platform moderators to intervene before malicious actors can exploit vulnerable users.
 
-Guardian AI operates an asynchronous processing pipeline capable of handling both textual streams and streamed voice audio.
+## Why I built it
 
-### 1. Audio Processing Pipeline
-- Incoming voice channels are sampled and transcribed locally using **OpenAI Whisper** running on accelerated local or serverless GPU infrastructure.
-- Zero audio retention policies guarantee user privacy while enabling instantaneous transcript analysis.
+Online gaming and messaging platforms have experienced an explosion of underage user participation. Unfortunately, predators exploit text chats and in-game voice lobbies using subtle grooming tactics—such as secrecy coercion, isolation requests, and gift manipulation—that traditional keyword filters completely miss.
 
-### 2. Dual-Path NLP Classification
-Guardian AI deploys a two-stage evaluation engine:
-- **Fast-Path Screening:** A fine-tuned **DistilBERT** classification model evaluates incoming chat tokens in sub-50ms latency, scoring messages for coercive sentiment, contact solicitation, and secrecy pressure.
-- **Deep-Path Contextual Reasoning:** Flagged conversations are escalated to an LLM context evaluation agent that analyzes multi-turn conversational trajectories to minimize false positives while detecting subtle psychological grooming patterns.
+Manual moderation cannot scale to millions of concurrent voice and chat streams. I built Guardian AI to explore how modern transformer models and local speech transcription can detect behavioral patterns contextually while preserving user privacy.
 
-### 3. Real-Time Alert Dispatch
-- Bi-directional **WebSockets** push instant severity-ranked alerts to moderator consoles.
-- Automated audit trails with tamper-evident message timelines for administrative review.
+## Core features
 
-## Tech Stack
+- **Real-time text & audio threat screening:** Analyze both incoming text message streams and transcribed voice audio channels.
+- **Local Whisper speech-to-text:** Transcribe voice audio locally using OpenAI Whisper without streaming private audio to third-party cloud APIs.
+- **Dual-path NLP classification:** Combine low-latency screening via fine-tuned DistilBERT with deep contextual reasoning for complex multi-turn chats.
+- **Sub-50ms fast-path evaluation:** Rapid message scoring for coercive sentiment, contact solicitation, and secrecy pressure.
+- **Real-time WebSocket alerts:** Instant push notifications dispatching severity-ranked warnings to moderator consoles.
+- **Privacy-first zero retention:** Ephemeral audio processing guarantees that voice audio is discarded immediately after transcription.
+- **Audit-ready incident timelines:** Tamper-evident message trajectories for administrative and law enforcement review.
 
-- **Backend & Inference:** Python, FastAPI, PyTorch, Hugging Face Transformers (DistilBERT), OpenAI Whisper
-- **Storage & Queues:** PostgreSQL, SQLAlchemy, Redis
-- **Networking:** Asynchronous WebSockets, Uvicorn
-- **Deployment:** Docker, Modal Cloud serverless ML workers
+## How it works
 
+1. **Stream ingestion:** Text messages and ephemeral voice packets enter the system via secure WebSockets.
+2. **Local audio transcription:** Voice streams are sampled and transcribed in real time using a local or containerized Whisper STT worker.
+3. **Stage 1 — Fast-path screening:** A fine-tuned DistilBERT transformer model evaluates the message tokens within 50ms, scoring for grooming risk indicators.
+4. **Stage 2 — Deep-path escalation:** Messages exceeding risk thresholds trigger a deep contextual evaluator that examines multi-turn conversational trajectories to filter out false positives.
+5. **Alert dispatch:** Confirmed high-risk interactions generate an immediate WebSocket alert to the moderation dashboard with highlighted trigger phrases and risk confidence scores.
+6. **Audit logging:** Incident timelines are recorded securely in PostgreSQL with cryptographic timestamps for administrative review.
+
+## System architecture
+
+Guardian AI is architected for low latency and privacy:
+- **API gateway:** Asynchronous FastAPI service running on Uvicorn, managing incoming WebSocket connections and routing message payloads.
+- **Inference worker:** PyTorch and Hugging Face Transformers pipeline hosting the fine-tuned DistilBERT model.
+- **Audio pipeline:** Containerized Whisper worker utilizing local GPU/CPU acceleration.
+- **Storage layer:** PostgreSQL database persisting authenticated moderator accounts, incident audit logs, and system telemetry.
+- **Deployment:** Fully containerized with Docker and Docker Compose for secure enterprise or on-premise execution.
+
+## Tech stack
+
+- **Python & FastAPI:** Asynchronous API service, WebSocket streaming, and endpoint routing.
+- **PyTorch & Hugging Face Transformers:** Fine-tuned DistilBERT model inference and tensor processing.
+- **OpenAI Whisper:** Local speech-to-text transcription without external audio transmission.
+- **PostgreSQL & SQLAlchemy:** Relational database for incident logs and audit trails.
+- **Docker & Docker Compose:** Containerized deployment across inference and database containers.
+- **WebSockets:** Real-time bi-directional moderator alerting.
+
+## Engineering challenges
+
+### Minimizing inference latency in live chats
+In online multiplayer games, chat messages arrive in rapid succession. Running heavy generative models on every message causes severe lag. Guardian AI solves this using a two-tier approach: sub-50ms DistilBERT screening handles 95% of safe traffic, escalating only ambiguous or high-risk cases to deeper evaluation.
+
+### Protecting minor privacy during audio analysis
+Sending audio streams of minors to public cloud transcription APIs introduces severe regulatory and privacy risks. Guardian AI runs OpenAI Whisper entirely on local or self-hosted containerized infrastructure, discarding audio buffers from memory the moment text tokens are generated.
+
+## Current implementation status
+
+- **FastAPI backend:** Complete REST and WebSocket endpoints for message submission and moderator alerts.
+- **Classification models:** Fine-tuned transformer classification scripts and inference pipelines are verified.
+- **Docker orchestration:** Multi-container Compose configuration bundling the API, database, and inference services.
+
+## Future improvements
+
+- **Cross-session behavioral tracking:** Detecting predators who alternate between multiple burner accounts over weeks.
+- **Multilingual threat detection:** Expanding grooming classification models to Spanish, Hindi, and German.
+- **Automated parental summaries:** Privacy-preserving daily safety summaries for parents without exposing private conversations.
+
+## What I learned
+
+Developing Guardian AI gave me deep practical experience with production machine learning pipelines. Designing systems that balance sub-50ms latency constraints with high accuracy and strict privacy guarantees is one of the most critical challenges in modern AI engineering.
+
+[Explore Guardian AI on GitHub](https://github.com/AnniiGCP/Guardian-AI)

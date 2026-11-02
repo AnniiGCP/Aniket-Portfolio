@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-
 import { Container } from "@/components/container";
 import { achievements, type Achievement } from "@/config/achievements";
 import { experience, type ExperienceItem } from "@/config/experience";
+import { TechIconPill } from "@/components/ui/tech-icon-pill";
 
 type FeaturedItem =
   | {
@@ -31,24 +31,6 @@ type FeaturedItem =
       href: string;
     };
 
-const techIcons: Record<string, string> = {
-  "Data Pipelines": "apacheairflow",
-  "Feature Engineering": "scikitlearn",
-  IoT: "arduino",
-  "Machine Learning": "tensorflow",
-  Nextjs: "nextdotjs",
-  "Next.js": "nextdotjs",
-  PostgreSQL: "postgresql",
-  Python: "python",
-  React: "react",
-  TypeScript: "typescript",
-};
-
-const achievementTech: Record<string, string[]> = {
-  "sih-2025": ["Python", "React", "TypeScript", "Machine Learning"],
-  "sih-2024": ["Next.js", "React", "TypeScript", "PostgreSQL"],
-};
-
 function experienceToFeatured(item: ExperienceItem): FeaturedItem {
   return {
     type: "experience",
@@ -56,7 +38,7 @@ function experienceToFeatured(item: ExperienceItem): FeaturedItem {
     subtitle: item.role,
     period: item.periodLong,
     location: item.locationLong.trim(),
-    image: "/assets/Valency-Energy-Logo.jpeg",
+    image: item.image ?? "/assets/allegion-logo.png",
     details: item.details ?? [],
     tech: item.tech ?? [],
     href: "/work",
@@ -70,29 +52,11 @@ function achievementToFeatured(item: Achievement): FeaturedItem {
     subtitle: item.title,
     period: item.periodLong,
     location: "Achievement",
-    image: item.image ?? "/assets/og-image.jpg",
+    image: item.image ?? "/assets/achievements/hire4thon-square.png",
     details: item.details ?? [],
-    tech: achievementTech[item.slug] ?? [],
+    tech: item.tech ?? ["Python", "React", "FastAPI", "SQLite"],
     href: `/achievements/${item.slug}`,
   };
-}
-
-function TechPill({ name }: { name: string }) {
-  const icon = techIcons[name] ?? name.toLowerCase().replaceAll(" ", "");
-
-  return (
-    <span className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-background/70 px-3 py-1.5 text-sm font-semibold text-foreground shadow-sm">
-      <Image
-        src={`https://cdn.simpleicons.org/${icon}`}
-        alt=""
-        width={16}
-        height={16}
-        className="size-4 shrink-0"
-        unoptimized
-      />
-      {name}
-    </span>
-  );
 }
 
 function FeaturedExperienceItem({
@@ -110,11 +74,11 @@ function FeaturedExperienceItem({
       <div className="grid gap-4 sm:grid-cols-[88px_minmax(0,1fr)_auto] sm:items-start">
         <Link
           href={item.href}
-          className="relative size-16 overflow-hidden rounded-xl bg-muted shadow-sm transition-transform hover:scale-[1.02]"
+          className="relative size-16 overflow-hidden rounded-xl bg-muted/60 shadow-sm transition-transform hover:scale-[1.02] border border-border/60"
         >
           <Image
             src={item.image}
-            alt=""
+            alt={item.title}
             fill
             sizes="64px"
             className="object-cover"
@@ -140,13 +104,13 @@ function FeaturedExperienceItem({
       </div>
 
       {item.tech.length > 0 && (
-        <div className="mt-8">
+        <div className="mt-7">
           <h3 className="text-xl font-bold tracking-tight text-foreground">
             Technologies
           </h3>
-          <div className="mt-4 flex flex-wrap gap-3">
+          <div className="mt-3.5 flex flex-wrap gap-2.5">
             {item.tech.map((tech) => (
-              <TechPill key={`${item.title}-${tech}`} name={tech} />
+              <TechIconPill key={`${item.title}-${tech}`} name={tech} size="md" />
             ))}
           </div>
         </div>
@@ -167,10 +131,10 @@ function FeaturedExperienceItem({
 }
 
 export function FeaturedExperienceSection() {
-  const featuredItems = [
-    ...experience.map(experienceToFeatured),
-    ...achievements.filter((item) => item.featured).map(achievementToFeatured),
-  ].slice(0, 2);
+  const featuredItems: FeaturedItem[] = [
+    experienceToFeatured(experience[0]), // Allegion (Experience)
+    achievementToFeatured(achievements[0]), // National Level HIRE-4-THON 2026 (Hackathon Achievement)
+  ];
 
   return (
     <Container>
@@ -195,12 +159,18 @@ export function FeaturedExperienceSection() {
         })}
       </div>
 
-      <div className="mt-10 flex justify-center">
+      <div className="mt-10 flex flex-wrap justify-center gap-4">
         <Link
           href="/work"
           className="rounded-lg border border-border bg-card px-5 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-muted"
         >
           Show all work experiences
+        </Link>
+        <Link
+          href="/achievements"
+          className="rounded-lg border border-border bg-card px-5 py-2 text-sm font-medium shadow-sm transition-colors hover:bg-muted"
+        >
+          View all achievements
         </Link>
       </div>
     </Container>

@@ -1,6 +1,6 @@
 export const quoteConfig = {
-  text: "Great things are done by a series of small things brought together.",
-  author: "Vincent van Gogh",
+  text: "You are what you believe in. You become that which you believe you can become",
+  author: "Bhagavad Gita",
 };
 
 export const rotatingTitles = [

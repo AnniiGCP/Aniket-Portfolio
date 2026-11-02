@@ -71,7 +71,7 @@ export function SiteHeader() {
           href="/"
           className="font-mono text-lg font-bold tracking-tight text-foreground hover:opacity-80"
         >
-          PU
+          AY
         </Link>
 
         <div className="flex items-center gap-3 sm:gap-5">

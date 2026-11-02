@@ -6,7 +6,7 @@ import { createPageMetadata, pageTitle } from "@/lib/metadata";
 export const metadata = createPageMetadata({
   title: pageTitle("Projects"),
   description:
-    "AI systems, RAG pipelines, and full-stack products built by Priyanshu Urmaliya.",
+    "AI developer tools, cloud infrastructure systems, and full-stack products built by Aniket Yadav.",
   path: "/projects",
 });
 
@@ -17,7 +17,7 @@ export default function ProjectsPage() {
         <p className="text-sm text-secondary">Featured</p>
         <h1 className="mt-1 text-3xl font-bold tracking-tight">Projects</h1>
         <p className="mt-3 text-secondary">
-          AI systems, RAG pipelines, and full-stack products I&apos;ve built along the way.
+          AI developer tools, cloud analytics, and systems I&apos;ve built along the way.
         </p>
       </Container>
       <ProjectsGrid items={projects} showHeading={false} />

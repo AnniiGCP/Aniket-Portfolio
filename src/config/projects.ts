@@ -18,7 +18,7 @@ export const projects: Project[] = [
     date: "10.2026",
     description:
       "An AI-powered developer tool designed to help developers understand, document, analyze and improve existing codebases through intelligent AST analysis, vector RAG, and CI/CD diagnostic integration.",
-    tech: ["Python", "FastAPI", "React 19", "TypeScript", "Tree-sitter", "FAISS", "Docker"],
+    tech: ["Python", "FastAPI", "React", "TypeScript", "Docker", "FAISS"],
     href: "https://github.com/AnniiGCP/CodeBrain",
     website: "https://codebrain-dev.vercel.app/",
     featured: true,
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     date: "09.2026",
     description:
       "An independent analytics platform calculating Google Cloud Arcade points, tracking cohort milestones, and projecting swag tier readiness with 5,486+ visitors and 4,987+ profiles analyzed.",
-    tech: ["React", "TypeScript", "Tailwind CSS", "Express", "MongoDB", "Vercel"],
+    tech: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Vercel"],
     href: "https://github.com/AnniiGCP/arcadeverse-dev",
     website: "https://arcadeverse.vercel.app",
     featured: true,
@@ -44,7 +44,7 @@ export const projects: Project[] = [
     date: "08.2026",
     description:
       "🥈 2nd Prize Winner — An AI-powered dynamic assessment and quiz generation platform built with contract-first FastAPI, Pydantic validation, and structured LLM inference orchestration.",
-    tech: ["FastAPI", "React", "SQLite", "Pydantic", "SQLAlchemy", "LLM APIs"],
+    tech: ["FastAPI", "React", "SQLite", "Pydantic", "SQLAlchemy", "Python"],
     href: "https://github.com/AnniiGCP/QuizGenAI",
     featured: true,
     cover: "/assets/projects/quizgenai.png",
@@ -56,7 +56,7 @@ export const projects: Project[] = [
     date: "05.2026",
     description:
       "A real-time threat detection platform for child online grooming identification using local Whisper STT, dual-path NLP classification (DistilBERT + LLM), and WebSockets alerts.",
-    tech: ["FastAPI", "PyTorch", "DistilBERT", "Whisper STT", "WebSockets", "PostgreSQL"],
+    tech: ["FastAPI", "PyTorch", "Python", "PostgreSQL", "Docker"],
     href: "https://github.com/AnniiGCP/Guardian-AI",
     featured: true,
     cover: "/assets/projects/guardian-ai.png",
@@ -68,20 +68,9 @@ export const projects: Project[] = [
     date: "06.2025",
     description:
       "A curated collection of 100+ production-ready Bash automation scripts covering GCP Compute Engine, Kubernetes (GKE), BigQuery, Cloud Run, and VPC networking.",
-    tech: ["Shell", "Bash", "Google Cloud CLI", "BigQuery", "Kubernetes", "Terraform"],
+    tech: ["Bash", "Google Cloud", "Kubernetes", "Terraform", "Linux"],
     href: "https://github.com/AnniiGCP/Google-Cloud-Arcade",
     cover: "/assets/projects/google-cloud.png",
     gradient: "from-sky-500/20 via-cyan-500/15 to-blue-500/20",
-  },
-  {
-    slug: "drivzo",
-    title: "Drivzo",
-    date: "03.2025",
-    description:
-      "A driver marketplace platform concept connecting customers and commercial transporters with verified drivers based on route requirements and schedule availability.",
-    tech: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
-    href: "https://github.com/AnniiGCP",
-    cover: "/assets/projects/drivzo.png",
-    gradient: "from-rose-500/20 via-pink-500/15 to-red-500/20",
   },
 ];

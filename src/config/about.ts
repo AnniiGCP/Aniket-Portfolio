@@ -1,12 +1,12 @@
 import { heroConfig } from "@/config/hero";
 
 export const aboutConfig = {
-  headline: ["From curious foundations", "to resilient software systems."],
+  headline: ["Engineering systems,", "solving problems with purpose."],
   intro:
-    "I'm Aniket Yadav — a **software engineer** and **computer science student** passionate about building practical software products, AI-powered developer tools, and reliable cloud-based applications. I care about the intersection where code meets automated infrastructure: clean APIs, robust systems, and developer-first workflows.",
+    "I'm Aniket Yadav — a **Computer Science and Design student** based in Bengaluru. I build full-stack web applications, work on AI-powered developer acceleration tools, and explore cloud infrastructure and DevOps automation.",
   quote:
-    "I believe great things are done by a series of small, consistent engineering choices brought together.",
-  traits: ["Curious", "Builder", "Disciplined", "Adaptable"] as const,
+    "You are what you believe in. You become that which you believe you can become. — Bhagavad Gita",
+  traits: ["Curious", "Builder", "Disciplined", "Systems-First"] as const,
   traitStyles: {
     Curious:
       "border-sky-200 bg-sky-50 text-sky-700 dark:border-sky-800/80 dark:bg-sky-950/40 dark:text-sky-300",
@@ -14,53 +14,52 @@ export const aboutConfig = {
       "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-800/80 dark:bg-emerald-950/40 dark:text-emerald-300",
     Disciplined:
       "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-800/80 dark:bg-amber-950/40 dark:text-amber-300",
-    Adaptable:
+    "Systems-First":
       "border-violet-200 bg-violet-50 text-violet-700 dark:border-violet-800/80 dark:bg-violet-950/40 dark:text-violet-300",
   },
   meta: [
     { label: "Location", value: heroConfig.location },
-    { label: "Degree", value: "B.E. Computer Science & Design" },
-    { label: "Focus", value: "Cloud · DevOps · AI Systems" },
+    { label: "Degree", value: "B.E. Computer Science & Design (2027)" },
+    { label: "Focus", value: "Cloud · DevOps · AI Developer Tools" },
   ],
   story: {
     title: "How it started",
     paragraphs: [
-      "My journey in computer science began with an innate fascination for how reliable software systems function beneath the surface. Pursuing Computer Science and Design at KS Institute of Technology in Bengaluru opened doors to understanding both rigorous software architecture and user-centric problem solving.",
-      "Early on, I built full-stack prototypes, explored Linux environments, and mastered cloud automation across AWS, Google Cloud, and Azure. Experiencing real production constraints inspired me to build **ArcadeVerse** — a cloud analytics platform that has processed over 4,987 public profiles and served 5,486+ unique visitors.",
-      "Competitive hackathons cemented my commitment to high-velocity shipping. At the **National Level HIRE-4-THON 2026 Hackathon**, our team secured **Second Place** by architecting an API-first automated quiz generation engine with real-time submission streak visualizers.",
-      "Today, I focus heavily on **developer productivity tools and AI systems** — such as **CodeBrain AI**, an automated codebase understanding, AST analysis, and CI/CD remediation assistant. I am continuously exploring how intelligent automation can eliminate friction for developers worldwide.",
+      "I am currently in my final years studying Computer Science and Design at KS Institute of Technology in Bengaluru. From the beginning, my focus has been on understanding how software systems actually work under the hood — from system calls and container boundaries to modern frontend interfaces.",
+      "Rather than only following tutorials, I learn by building practical projects. To help cloud learners, I created ArcadeVerse, a tracking and analytics platform that has audited over 4,987 public profiles and served 5,486+ unique visitors.",
+      "I love the problem-solving intensity of competitive hackathons. At the National Level HIRE-4-THON 2026 Hackathon, my team (Unpaid Labors) secured Second Place (Runner-Up) with QuizGenAI, an automated assessment engine built with contract-first FastAPI schemas. This achievement led to an internship opportunity with Dyashin Technosoft.",
+      "I also have an incoming software engineering opportunity with Allegion through campus placement (~₹7.5 LPA). As I prepare for my engineering career, I am diving deep into enterprise cloud infrastructure, Azure DevOps, CI/CD automation, and intelligent developer assistants like CodeBrain AI.",
     ],
   },
   principles: {
-    title: "How I engineer",
+    title: "How I think about engineering",
     items: [
       {
-        title: "Embrace the systems mindset",
+        title: "Understand the system end-to-end",
         description:
-          "Software doesn't live in a vacuum. I prioritize reliable deployment pipelines, containerization, and clean architectural boundaries.",
+          "Code is only one piece of the puzzle. Clean API contracts, reliable build pipelines, and resilient deployment environments matter just as much.",
       },
       {
-        title: "Ship with purpose",
+        title: "Build to solve actual problems",
         description:
-          "A working prototype in the hands of real users provides more insight than weeks of theoretical design.",
+          "Practical projects that handle real user input teach more about edge cases and defensive design than theoretical exercises.",
       },
       {
-        title: "Protect simplicity & security",
+        title: "Embrace discipline and fundamentals",
         description:
-          "Clean, type-safe API contracts and disciplined credential protection are non-negotiable fundamentals.",
+          "Strong computer science fundamentals, clear documentation, and consistent Git discipline make large systems maintainable.",
       },
       {
-        title: "Stay deeply curious",
+        title: "Stay curious and humble",
         description:
-          "Technology evolves rapidly. I learn by building, inspecting source code, and breaking down real-world engineering challenges.",
+          "Technologies and frameworks evolve constantly. The most important skill is learning quickly and writing clear, robust code.",
       },
     ],
   },
   beyond: {
     title: "Beyond the screen",
     paragraphs: [
-      "When I am not writing code or experimenting with cloud infrastructure, you will find me playing guitar, reading, journaling, and exploring emerging technologies.",
-      "I value continuous personal development, thoughtful craftsmanship, and the journey of building meaningful software.",
+      "When I step away from code and terminals, I enjoy playing the acoustic guitar, reading books on philosophy and psychology, journaling, and exploring emerging technologies.",
     ],
   },
   connectLinks: [
@@ -73,6 +72,11 @@ export const aboutConfig = {
       name: "GitHub",
       href: "https://github.com/AnniiGCP",
       icon: "github" as const,
+    },
+    {
+      name: "X",
+      href: "https://x.com/AniketYadav1105",
+      icon: "x" as const,
     },
     {
       name: "Email",

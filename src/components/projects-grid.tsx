@@ -4,7 +4,8 @@ import { ArrowRight, GithubLogo, Globe } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/container";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass";
 import { projects, type Project } from "@/config/projects";
-import { getTechIcon } from "@/lib/tech-icons";
+import { TechIconPill } from "@/components/ui/tech-icon-pill";
+
 import { cn } from "@/lib/utils";
 
 export function ProjectCard({ project, index = 0 }: { project: Project; index?: number }) {
@@ -83,32 +84,9 @@ export function ProjectCard({ project, index = 0 }: { project: Project; index?: 
           <p className="text-sm font-medium text-secondary">Technologies</p>
           <div className="mt-3 flex items-end justify-between gap-3">
             <div className="flex min-w-0 flex-wrap gap-2">
-            {project.tech.map((tech) => {
-              const icon = getTechIcon(tech);
-              return icon ? (
-                <div
-                  key={tech}
-                  title={tech}
-                  className="flex size-7 items-center justify-center rounded-md bg-background/70 shadow-sm ring-1 ring-border/60 dark:bg-white/95"
-                >
-                  <Image
-                    src={icon.startsWith("/") ? icon : `https://cdn.simpleicons.org/${icon}`}
-                    alt={tech}
-                    width={16}
-                    height={16}
-                    className="size-4"
-                    unoptimized
-                  />
-                </div>
-              ) : (
-                <span
-                  key={tech}
-                  className="rounded-md border border-dashed border-border bg-background/50 px-2 py-1 font-mono text-[10px] text-secondary"
-                >
-                  {tech}
-                </span>
-              );
-            })}
+              {project.tech.map((tech) => (
+                <TechIconPill key={tech} name={tech} size="sm" />
+              ))}
             </div>
             <Link
               href={detailHref}

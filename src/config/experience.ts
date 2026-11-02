@@ -6,6 +6,7 @@ export type ExperienceItem = {
   locationShort: string;
   locationLong: string;
   working?: boolean;
+  image?: string;
   details?: string[];
   tech?: string[];
 };
@@ -14,29 +15,31 @@ export const experience: ExperienceItem[] = [
   {
     company: "Allegion",
     role: "Incoming Software Engineer",
-    periodShort: "Upcoming",
+    periodShort: "Expected 2027",
     periodLong: "Incoming Opportunity (~₹7.5 LPA)",
     locationShort: "Bengaluru, IN",
     locationLong: "Bengaluru, Karnataka, India",
     working: false,
+    image: "/assets/allegion-logo.png",
     details: [
-      "Received campus placement software engineering job offer with joining timeline scheduled upon degree completion.",
-      "Focusing on enterprise software engineering, secure infrastructure systems, and scalable product engineering.",
+      "Selected through campus placement for an incoming Software Engineering opportunity (~₹7.5 LPA).",
+      "Focused on developing skills in cloud infrastructure, enterprise systems, Azure DevOps, CI/CD automation and reliable software engineering.",
     ],
-    tech: ["Software Engineering", "Systems Design", "Cloud Infrastructure", "Java", "Python"],
+    tech: ["Azure", "Azure DevOps", "CI/CD", "Java", "Python", "Linux"],
   },
   {
     company: "Dyashin Technosoft",
-    role: "Software Engineering Intern (Hackathon Awarded)",
+    role: "Software Engineering Intern",
     periodShort: "2026",
     periodLong: "Awarded via HIRE-4-THON 2026",
     locationShort: "Bengaluru, IN",
     locationLong: "Bengaluru, Karnataka, India",
     working: false,
+    image: "/assets/achievements/hire4thon-square.png",
     details: [
-      "Awarded internship opportunity following 2nd Place achievement at the National Level HIRE-4-THON Hackathon.",
-      "Collaborated on automated assessment algorithms, full-stack web applications, and developer productivity tooling.",
+      "Awarded software engineering internship recognition following 2nd Place finish at the National Level HIRE-4-THON 2026 Hackathon.",
+      "Engineered automated quiz generation algorithms, contract-first schema validation, and responsive interactive web interfaces.",
     ],
-    tech: ["React", "FastAPI", "Web Architecture", "REST APIs", "Python"],
+    tech: ["FastAPI", "React", "Python", "SQLite"],
   },
 ];
