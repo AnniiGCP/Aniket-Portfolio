@@ -2,7 +2,7 @@
 
 A personal developer portfolio showcasing my work, projects, technical skills, achievements, and journey in software engineering, AI development, cloud technologies, and DevOps.
 
-**Live Website:** [aniketyadav.tech](https://aniketyadav.tech) · **GitHub:** [@AnniiGCP](https://github.com/AnniiGCP) · **LinkedIn:** [aniketyadav9099](https://linkedin.com/in/aniketyadav9099/) · **Email:** aniketyadav0078@gmail.com
+**Live Website:** [aniketyadav.tech](https://aniketyadav.tech)  · **LinkedIn:** [aniketyadav9099](https://linkedin.com/in/aniketyadav9099/) · **Email:** aniketyadav0078@gmail.com
 
 ---
 
