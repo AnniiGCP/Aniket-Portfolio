@@ -19,7 +19,7 @@ export function SiteFooter() {
         </div>
 
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
-          <GitHubButton />
+          <GitHubButton href="https://github.com/AnniiGCP/Aniket-Portfolio" />
 
           <div className="flex items-center gap-2">
             {footerSocial.map((link) => {
