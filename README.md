@@ -1,425 +1,153 @@
+# Aniket Yadav — Portfolio
+
+A personal developer portfolio showcasing my work, projects, technical skills, achievements, and journey in software engineering, AI development, cloud technologies, and DevOps.
+
+**Live Website:** [aniketyadav.tech](https://aniketyadav.tech) · **GitHub:** [@AnniiGCP](https://github.com/AnniiGCP) · **LinkedIn:** [aniketyadav9099](https://linkedin.com/in/aniketyadav9099/) · **Email:** aniketyadav0078@gmail.com
+
+---
+
+## Preview
+
 <div align="center">
-
-# Aniket Yadav — Personal Portfolio
-
-**A modern, responsive developer portfolio engineered with Next.js 15 App Router, TypeScript, and Tailwind CSS v4.**  
-Showcasing projects in AI development, DevOps automation, cloud infrastructure, and software engineering.
-
-[![Live Website](https://img.shields.io/badge/Live_Website-aniketyadav.tech-10b981?style=for-the-badge&logo=vercel&logoColor=white)](https://aniketyadav.tech)
-[![GitHub Repository](https://img.shields.io/badge/GitHub_Repo-Aniket--Portfolio-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AnniiGCP/Aniket-Portfolio)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-aniketyadav9099-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/aniketyadav9099/)
-[![X / Twitter](https://img.shields.io/badge/X-@AniketYadav1105-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/AniketYadav1105)
-
+  <img src="public/assets/readme-preview.png" alt="Aniket Yadav Portfolio Preview" width="100%" />
 </div>
 
 ---
 
-## 📸 Portfolio Preview
+## Highlights
 
-<div align="center">
-  <img src="public/assets/readme-preview.png" alt="Aniket Yadav Portfolio Preview" width="100%" style="border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);" />
-</div>
-
----
-
-## 📑 Table of Contents
-
-- [Project Overview](#-project-overview)
-- [Key Features](#-key-features)
-- [Tech Stack](#-tech-stack)
-- [Getting Started](#-getting-started)
-- [Available Scripts](#-available-scripts)
-- [Project Structure](#-project-structure)
-- [Routes & Pages](#-routes--pages)
-- [Customizing Portfolio Content](#-customizing-portfolio-content)
-- [Adding Projects](#-adding-projects)
-- [Adding Blog Posts](#-adding-blog-posts)
-- [Profile Images & Assets](#-profile-images--assets)
-- [Visitor Counter Implementation](#-visitor-counter-implementation)
-- [Environment Variables](#-environment-variables)
-- [Deployment Guide](#-deployment-guide)
-- [SEO & Performance](#-seo--performance)
-- [Contact & Connect](#-contact--connect)
-- [License](#-license)
+- **Home** — Hero slideshow with dual identity banners, verified badge, tech stack, experience, achievements, featured projects, GitHub contribution calendar, dynamic Gita wisdom, and visitor counter.
+- **About** — Personal narrative, academic background at KSIT, and core approaches to software engineering.
+- **Projects** — Interactive showcases with live demo and repository links for **ArcadeVerse**, **CodeBrain AI**, **QuizGenAI**, **Guardian AI**, and **Google Cloud Solutions**.
+- **Experience** — Career timeline featuring roles at **Valency Energy** (AI/ML Intern) and **Allegion** (Incoming Graduate Engineer Trainee).
+- **Achievements** — Hackathon runner-up honors at national-level **HIRE-4-THON 2026** with workstation and event photo gallery.
+- **Resume** — In-browser interactive PDF viewer with text selection, clickable links, and direct download.
+- **Books & Favourites** — Hand-curated reading lists and media recommendations.
+- **Command Palette (`⌘K`)** — Global keyboard-driven search for instant navigation, theme switching, and quick links.
+- **Theme Toggle** — Persistent dark mode by default with smooth light mode toggle.
+- **Music Player** — Vinyl record widget with live spin animation and audio preview.
+- **Cursor Pet (Pixel)** — Interactive companion following the cursor across desktop viewports.
 
 ---
 
-## 🌟 Project Overview
+## Tech Stack
 
-This repository houses the source code for the personal developer portfolio of **Aniket Yadav** ([@AnniiGCP](https://github.com/AnniiGCP)), an AI and DevOps-focused software developer based in Bengaluru, India.
-
-Built from the ground up for speed, fluid aesthetics, and search visibility, the portfolio features:
-- A signature dark-mode **liquid glass** UI design with responsive layout scaling.
-- Interactive, data-driven components (GitHub contribution graph, Spotify vinyl widget, dynamic wisdom card, live visitor counter).
-- Full-stack developer showcases with macOS window mockups, deep-dive project case studies, and career timelines.
-- Strict WCAG 2.2 Level AA accessibility compliance, zero horizontal layout blowout, and 100% pre-rendered static routes.
-
----
-
-## 🚀 Key Features
-
-| Category | Feature Description |
+| Layer | Tools |
 |---|---|
-| **Hero & Dual Slideshow** | Corkboard identity banner with flip transition, verified checkmark badge, quick calendar booking via Cal.com, and email CTA. |
-| **Interactive Vinyl Player** | Vinyl record animation playing audio previews (*Apocalypse — Cigarettes After Sex*) with live play/pause disc rotation. |
-| **Tech Stack Showcase** | 20+ interactive technology badges categorized across Frontend, Backend, DevOps, Cloud, and Machine Learning. |
-| **Experience Timeline** | Detailed roles for Valency Energy (AI/ML Intern) and Allegion (Incoming Graduate Engineer Trainee) with verified skills. |
-| **Achievements Section** | Spotlighting national runner-up honors at **HIRE-4-THON 2026** with team gallery and award documentation. |
-| **Project Case Studies** | Dedicated deep dives for **CodeBrain AI**, **ArcadeVerse**, **QuizGenAI**, **Guardian AI**, and **Google Cloud Solutions**. |
-| **GitHub Contribution Graph** | Canonical emerald green palette calendar matrix with live GitHub GraphQL data and zero-overflow mobile scroll. |
-| **Dynamic Gita Wisdom Card** | 201 curated Bhagavad Gita verses dynamically rotating with authentic chapter and verse citations (`— Bhagavad Gita · 2.47`). |
-| **Visitor Counter** | Non-intrusive persistent visitor counter displaying total page engagements. |
-| **Interactive PDF Resume** | In-browser PDF iframe reader supporting direct text selection, embedded link navigation, and one-click download. |
-| **Books & Favourites** | Curated recommendations covering engineering, personal finance, psychology, cinema, and productivity. |
-| **Command Palette (`⌘K`)** | Quick-navigation palette with keyboard navigation for instant page switching, theme toggling, and social actions. |
-| **Pixel Cursor Pet** | Playful companion sprite (Oneko) tracking cursor movements across desktop screens. |
-| **Default Dark Theme** | Enforces a dark mode aesthetic on initial load with seamless toggleable light mode persisted via `next-themes`. |
+| **Framework** | [Next.js 15](https://nextjs.org/) (App Router, Static Site Generation) |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) |
+| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) |
+| **UI Components** | [Radix UI](https://www.radix-ui.com/), [Motion](https://motion.dev/), [CMDK](https://cmdk.paco.me/) |
+| **Icons** | [Phosphor Icons](https://phosphoricons.com/) & [Lucide](https://lucide.dev/) |
+| **Content** | [MDX](https://mdxjs.com/) (`next-mdx-remote`, `gray-matter`) |
+| **Analytics** | [Vercel Analytics](https://vercel.com/analytics) & [Speed Insights](https://vercel.com/docs/speed-insights) |
+| **Deployment** | [Vercel](https://vercel.com/) |
 
 ---
 
-## 🛠️ Tech Stack
-
-### Core Technologies
-
-| Layer | Technology | Version | Purpose |
-|---|---|---|---|
-| **Framework** | [Next.js](https://nextjs.org/) | `15.5.2` | App Router, Static Site Generation (SSG), Edge API Routes |
-| **Runtime** | [React](https://react.dev/) | `19.1.1` | Concurrent rendering, Server & Client Components |
-| **Language** | [TypeScript](https://www.typescriptlang.org/) | `5.9.2` | Strict end-to-end type safety |
-| **Styling** | [Tailwind CSS](https://tailwindcss.com/) | `4.1.12` | Modern utility-first CSS styling and fluid spacing |
-| **Animation** | [Motion](https://motion.dev/) | `13.4.0` | Performant spring physics, transitions, and hover effects |
-| **Icons** | [Phosphor Icons](https://phosphoricons.com/) & [Lucide](https://lucide.dev/) | Latest | Clean, accessible vector iconography |
-| **Content** | [MDX](https://mdxjs.com/) | Remote v6 | Rich Markdown documentation with JSX components |
-| **Command Palette** | [CMDK](https://cmdk.paco.me/) | `1.1.1` | Accessible `⌘K` keyboard command palette |
-| **Theming** | [next-themes](https://github.com/pacocoursey/next-themes) | `0.4.6` | Theme management with dark mode default |
-| **Analytics** | [Vercel Web Analytics](https://vercel.com/analytics) | `2.0.1` | Privacy-focused visitor analytics |
-| **Speed Insights** | [Vercel Speed Insights](https://vercel.com/docs/speed-insights) | `2.0.0` | Real-world Core Web Vitals telemetry |
-| **Deployment** | [Vercel](https://vercel.com/) | Production | Edge network hosting with automated CI/CD git integration |
-
----
-
-## 🏁 Getting Started
+## Getting Started
 
 ### Prerequisites
 
-Ensure you have the following installed:
-- **Node.js:** `v20.x` or later (Node 20+ recommended)
-- **Package Manager:** `npm` (v10+), `pnpm` (v9+), or `yarn` (v1.22+)
-- **Git:** Latest version
+- **Node.js:** `v20.x` or later
+- **npm:** `v10.x` or later
 
-### 1. Clone the Repository
+### Installation
 
 ```bash
+# 1. Clone the repository
 git clone https://github.com/AnniiGCP/Aniket-Portfolio.git
+
+# 2. Navigate to the project directory
 cd Aniket-Portfolio
-```
 
-### 2. Install Dependencies
-
-```bash
+# 3. Install dependencies
 npm install
-```
 
-### 3. Configure Environment Variables
-
-Create a local `.env.local` file by copying the provided example:
-
-```bash
-cp .env.example .env.local
-```
-
-Populate the values inside `.env.local`:
-
-```env
-# GitHub Personal Access Token (for live contribution graph fetching)
-GITHUB_TOKEN=your_github_personal_access_token_here
-
-# Base URL for canonical tags, sitemaps, and OpenGraph
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-```
-
-> **Note:** A `GITHUB_TOKEN` is optional for local development. If omitted, the app gracefully falls back to cached contribution data.
-
-### 4. Start the Development Server
-
-```bash
+# 4. Start local development server
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
----
+### Available Scripts
 
-## 📜 Available Scripts
-
-| Command | Action |
+| Command | Description |
 |---|---|
-| `npm run dev` | Starts the Next.js development server with Turbopack / Fast Refresh on `localhost:3000`. |
-| `npm run build` | Compiles the production build, runs type checking, and statically pre-renders all 24 routes. |
-| `npm start` | Launches the production server locally after running `npm run build`. |
-| `npm run lint` | Executes ESLint to check for code quality, syntax errors, and React hooks rules. |
+| `npm run dev` | Starts the development server at `localhost:3000` |
+| `npm run build` | Builds and statically pre-renders the site for production |
+| `npm start` | Runs the compiled production build locally |
+| `npm run lint` | Runs ESLint to check for code quality and errors |
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
-Aniket-Portfolio/
-├── content/                    # Long-form MDX content
-│   ├── blog/                   # Blog articles and tutorials
-│   └── projects/               # Detailed project case studies (CodeBrain, ArcadeVerse, etc.)
-├── data/                       # Local data stores
-│   └── visitors.json           # Fallback visitor counter data
-├── docs/                       # Pre-launch and technical audit documentation
-│   ├── portfolio-audit/        # Comprehensive SEO, accessibility, and responsiveness reports
-│   └── pre-launch-audit/       # Reference checklist and analytics guides
-├── public/                     # Static assets served at root
-│   ├── assets/                 # Profile avatars, banners, project covers, and icons
-│   │   ├── achievements/       # Hackathon and milestone photos
-│   │   ├── books/              # Book cover graphics
-│   │   ├── favourites/         # Movie & media posters
-│   │   ├── projects/           # High-resolution project mockups
-│   │   ├── avatar.jpg          # Primary circular avatar (cream blazer portrait)
-│   │   ├── og-image.png        # 1200x630 OpenGraph social preview card
-│   │   └── aniket-resume.pdf   # In-app interactive resume document
-│   └── oneko/                  # Sprite assets for the Oneko cursor companion
+aniket-portfolio/
+├── content/              # Long-form MDX case studies and blog articles
+│   ├── blog/             # Optional blog articles
+│   └── projects/         # Detailed project writeups
+├── data/                 # Local data fallbacks (visitors.json)
+├── public/               # Static assets
+│   ├── assets/           # Profile portraits, project covers, and resume PDF
+│   └── oneko/            # Sprite animations for the cursor pet
 ├── src/
-│   ├── app/                    # Next.js 15 App Router routes & layouts
-│   │   ├── about/              # /about page
-│   │   ├── achievements/       # /achievements listing and [slug] routes
-│   │   ├── api/                # Edge API routes (/api/github, /api/spotify, /api/visitors)
-│   │   ├── books/              # /books reading shelf
-│   │   ├── favourites/         # /favourites recommendations
-│   │   ├── projects/           # /projects catalog and [slug] case studies
-│   │   ├── resume/             # /resume interactive PDF viewer
-│   │   ├── work/               # /work career and experience timeline
-│   │   ├── favicon.ico         # Root browser favicon
-│   │   ├── globals.css         # Global Tailwind v4 styling and animations
-│   │   ├── layout.tsx          # Root layout with fonts, JSON-LD, analytics & theme provider
-│   │   ├── not-found.tsx       # Custom 404 page
-│   │   ├── page.tsx            # Homepage index
-│   │   ├── robots.ts           # Dynamic robots.txt generation
-│   │   └── sitemap.ts          # Dynamic sitemap.xml generation
-│   ├── components/             # Reusable UI components
-│   │   ├── landing/            # Homepage sections (Hero, TechStack, Experience, GitHub, GitaCard)
-│   │   ├── ui/                 # Liquid glass cards, buttons, badges, tooltips
-│   │   ├── command-menu.tsx    # Cmd+K search palette
-│   │   ├── cursor-pet.tsx      # Desktop cursor companion
-│   │   ├── person-json-ld.tsx  # Schema.org structured data
-│   │   └── site-header.tsx     # Navigation header and mobile dock
-│   ├── config/                 # Central configuration files for data and site identity
-│   │   ├── about.ts            # Bio, philosophy, background timeline
-│   │   ├── achievements.ts     # Competitions, hackathons, and awards
-│   │   ├── experience.ts       # Work roles, technologies, dates, and locations
-│   │   ├── hero.ts             # Name, headline, social links, calendar URL
-│   │   ├── meta.ts             # Site metadata, title, descriptions, canonical URL
-│   │   ├── navigation.ts       # Main navbar and command menu links
-│   │   └── projects.ts         # Project metadata, badges, links, cover images
-│   ├── data/                   # Wisdom datasets (201 Bhagavad Gita verses)
-│   └── lib/                    # Helper utilities, MDX loaders, GitHub API clients
-├── .env.example                # Sample environment configuration
-├── .gitignore                  # Git ignore rules protecting secrets and build caches
-├── next.config.ts              # Next.js framework configuration
-├── package.json                # Project dependencies and script declarations
-├── tsconfig.json               # TypeScript compiler configuration
-└── README.md                   # Project documentation
+│   ├── app/              # Next.js 15 App Router pages, layout, and API endpoints
+│   ├── components/       # UI elements, liquid glass cards, and landing sections
+│   ├── config/           # Site content and data configuration files
+│   ├── data/             # Bhagavad Gita wisdom collection (201 teachings)
+│   └── lib/              # Helper utilities, metadata builders, and GitHub API
+├── .env.example          # Template for local environment variables
+├── package.json          # Project dependencies and npm scripts
+└── README.md             # Project documentation
 ```
 
 ---
 
-## 🗺️ Routes & Pages
+## Customizing Content
 
-| Route | Page | Description | Rendering |
-|---|---|---|---|
-| `/` | **Home** | Hero section, tech stack grid, experience, featured projects, GitHub matrix, dynamic quote card. | SSG (Static) |
-| `/about` | **About** | Personal narrative, education at KSIT, engineering philosophy, and hobbies. | SSG (Static) |
-| `/projects` | **Projects** | Complete showcase of software projects and developer tools with filtering. | SSG (Static) |
-| `/projects/[slug]` | **Project Detail** | In-depth case studies with architecture breakdown, features, and direct links. | SSG (Static) |
-| `/work` | **Work Experience** | Comprehensive employment history, internships, and enterprise engineering roles. | SSG (Static) |
-| `/achievements` | **Achievements** | Hackathon victories, competitive milestones, and community recognition. | SSG (Static) |
-| `/achievements/[slug]` | **Achievement Detail** | Dedicated writeup with event photo gallery and prize certificates. | SSG (Static) |
-| `/resume` | **Resume** | Embedded responsive PDF document with text selection, in-PDF clicking, and download button. | SSG (Static) |
-| `/books` | **Bookshelf** | Reading list of engineering, leadership, and personal growth literature. | SSG (Static) |
-| `/favourites` | **Favourites** | Curated collection of movies, TV series, podcasts, and media inspirations. | SSG (Static) |
-| `/api/github/contributions` | **Contributions API** | Fetches live year-round GitHub commit activity via GraphQL. | Edge Route |
-| `/api/visitors` | **Visitor API** | Increments and retrieves cumulative portfolio visitor count. | Edge Route |
-| `/api/spotify/now-playing` | **Audio Preview API** | Provides playback state and preview stream for current track. | Edge Route |
-| `/robots.txt` | **Robots Directive** | Directs search engine crawlers and specifies sitemap location. | Edge Route |
-| `/sitemap.xml` | **XML Sitemap** | Dynamically indexes all 24 public canonical routes. | Edge Route |
+Most portfolio content can be edited directly in `src/config/` without touching the UI components:
+
+| File | What to Edit |
+|---|---|
+| `src/config/hero.ts` | Name, role, bio headline, avatar path, and social links |
+| `src/config/projects.ts` | Project titles, descriptions, tech stacks, links, and cover images |
+| `src/config/experience.ts` | Work history, roles, dates, locations, and bullet points |
+| `src/config/achievements.ts` | Competitions, awards, dates, and gallery photos |
+| `src/config/about.ts` | Personal story, education at KSIT, and engineering approach |
+| `src/config/meta.ts` | Site title, SEO description, and canonical domain URL |
+
+- **Adding a Project:** Add a new object to the `projects` array in `src/config/projects.ts`. Place its mockup screenshot inside `public/assets/projects/`. You can optionally add a matching `.mdx` writeup in `content/projects/<slug>.mdx`.
+- **Updating Tech Stack:** Modify the technology pill lists in `src/config/hero.ts` or individual project items in `src/config/projects.ts`.
+- **Publishing Blog Posts:** Create an MDX file in `content/blog/<slug>.mdx` with `title`, `date`, `description`, and `cover` in the frontmatter.
 
 ---
 
-## ✏️ Customizing Portfolio Content
+## Visitor Counter
 
-All personal content is separated from the UI components. You can customize the portfolio by modifying the files in `src/config/`:
-
-| File | Content Controlled | Configurable Properties |
-|---|---|---|
-| `src/config/hero.ts` | Hero profile, bio, avatars | `name`, `role`, `headline`, `email`, `socialLinks`, `avatar` |
-| `src/config/meta.ts` | Global SEO metadata | `name`, `title`, `description`, `url`, `ogImage` |
-| `src/config/experience.ts` | Career and work history | Company name, role, dates, location, bullet points, tech stack |
-| `src/config/projects.ts` | Projects list | `title`, `slug`, `description`, `tech`, `href`, `website`, `cover` |
-| `src/config/achievements.ts` | Awards & competitions | `title`, `organization`, `year`, `details`, `gallery`, `tech` |
-| `src/config/about.ts` | About page content | Personal bio, story, approaches to engineering |
-| `src/config/resume.ts` | Resume viewer settings | Resume title, file paths for view/download |
-| `src/data/bhagavadGitaQuotes.ts` | Wisdom card collection | 201 authentic Bhagavad Gita teachings with chapter & verse |
+- **API Endpoint:** `/api/visitors` (`GET` to fetch, `POST` to increment).
+- **Storage:** Persists count in `data/visitors.json` during local development. In production on Vercel, it uses session cookies to avoid duplicate counts on page refresh.
+- **Production Setup:** Works automatically without external database requirements. Can optionally be connected to Upstash Redis for distributed multi-region tracking.
 
 ---
 
-## ➕ Adding Projects
+## Deploy
 
-To add a new project to your portfolio:
+The easiest way to deploy this portfolio is with **Vercel**:
 
-1. **Add the project metadata** to `src/config/projects.ts`:
-
-```typescript
-{
-  slug: "my-new-project",
-  title: "My New Project",
-  date: "11.2026",
-  description: "A concise 1-2 sentence description explaining what the project solves and its tech stack.",
-  tech: ["Python", "FastAPI", "React", "Docker"],
-  href: "https://github.com/AnniiGCP/my-new-project",
-  website: "https://my-new-project.vercel.app",
-  featured: true,
-  cover: "/assets/projects/my-new-project.png",
-  gradient: "from-blue-500/25 via-indigo-500/15 to-violet-500/25",
-}
-```
-
-2. **Add the project cover image** to `public/assets/projects/my-new-project.png` (recommended resolution: `1200x675` or 16:9 aspect ratio).
-
-3. *(Optional)* **Create a deep-dive case study** in `content/projects/my-new-project.mdx`:
-
-```mdx
----
-title: "My New Project"
-date: "2026-11-04"
-description: "Detailed case study of My New Project."
-cover: "/assets/projects/my-new-project.png"
-technologies: ["Python", "FastAPI", "React", "Docker"]
-github: "https://github.com/AnniiGCP/my-new-project"
-website: "https://my-new-project.vercel.app"
----
-
-## Overview
-
-Explain the problem, architecture, implementation highlights, and results here.
-```
+1. Push your repository to GitHub: `https://github.com/AnniiGCP/Aniket-Portfolio`.
+2. Import the project into [Vercel](https://vercel.com/new).
+3. Add the following **Environment Variables** in Vercel Project Settings:
+   - `GITHUB_TOKEN`: Your GitHub Personal Access Token (for the live contribution calendar).
+   - `NEXT_PUBLIC_SITE_URL`: `https://aniketyadav.tech`
+4. Click **Deploy**. Vercel will run `npm run build` and launch the site on your domain with automatic SSL and global CDN distribution.
 
 ---
 
-## 📝 Adding Blog Posts
+## License
 
-The portfolio includes MDX blog post capabilities located in `content/blog/`.
-
-To publish a new article:
-1. Create a `.mdx` file in `content/blog/<slug>.mdx` (e.g., `content/blog/building-devops-pipelines.mdx`).
-2. Add the required frontmatter at the top:
-
-```mdx
----
-title: "Building Resilient CI/CD Pipelines with GitHub Actions and Docker"
-date: "2026-11-04"
-description: "A hands-on guide to automating test runs, container builds, and deployment verification."
-cover: "/assets/blog/cicd-cover.png"
-tags: ["DevOps", "Docker", "CI/CD", "Automation"]
----
-
-Write your article content in Markdown or MDX syntax here...
-```
-
-The dynamic sitemap (`sitemap.ts`) will automatically register the new post on your next build.
-
----
-
-## 🖼️ Profile Images & Assets
-
-Key visual assets stored in `public/assets/`:
-
-| Asset File | Recommended Dimensions | Usage |
-|---|---|---|
-| `public/assets/avatar.jpg` | 560 × 560 px (1:1) | Primary circular avatar on Hero and About page. |
-| `public/assets/profile-blazer.jpg` | High-Res Portrait | Full-length portrait outside Courtyard by Marriott. |
-| `public/assets/banner-corkboard.jpg` | 1200 × 400 px | Hero "God's Plan" corkboard header background. |
-| `public/assets/og-image.png` | 1200 × 630 px | Primary OpenGraph image for LinkedIn, Twitter, WhatsApp. |
-| `public/assets/readme-preview.png` | 1024 × 576 px | GitHub repository README showcase screenshot. |
-| `public/assets/aniket-resume.pdf` | Standard A4 / Letter | Live interactive PDF loaded in `/resume`. |
-| `public/assets/projects/*.png` | 1200 × 675 px (16:9) | Browser mockups for project cards. |
-| `public/assets/achievements/*.jpg` | Variable | Hackathon presentations, team photos, and workstation shots. |
-
----
-
-## 🔢 Visitor Counter Implementation
-
-- **API Endpoint:** `/api/visitors` (`GET` and `POST`)
-- **Local Development:** Reads and writes to `data/visitors.json`.
-- **Production Serverless Behavior:** Increments visitor count using persistent HTTP session cookies to ensure individual page reloads do not inflate the tally. If running in a read-only serverless environment without an external database, it falls back to memory persistence with seed data from `data/visitors.json`.
-- **Display Component:** Rendered on the homepage within `QuoteVisitorCard` with animated digit increments.
-
----
-
-## 🔐 Environment Variables
-
-| Variable | Environment | Required | Description |
-|---|---|---|---|
-| `GITHUB_TOKEN` | Local & Vercel | **Recommended** | GitHub Personal Access Token (PAT) used to fetch contributions via the GraphQL API with 5,000 req/hr quota. |
-| `NEXT_PUBLIC_SITE_URL` | Local & Vercel | **Required in Prod** | Base canonical domain (set to `https://aniketyadav.tech` in production). |
-| `NEXT_PUBLIC_GA_ID` | Vercel | Optional | Google Analytics 4 Measurement ID (`G-XXXXXXXXXX`). |
-
-> **Security Rule:** Never commit `.env` or `.env.local` to GitHub. The included `.gitignore` protects all `.env*` files automatically.
-
----
-
-## 🚀 Deployment Guide
-
-### Deploying to Vercel (Recommended)
-
-1. **Push your code to GitHub:** Ensure your latest commits are on the `main` branch.
-2. **Import into Vercel:**
-   - Go to [vercel.com/new](https://vercel.com/new).
-   - Select your repository **`AnniiGCP/Aniket-Portfolio`**.
-   - Framework preset will automatically be set to **Next.js**.
-3. **Configure Environment Variables:**
-   - In the Vercel project configuration, add:
-     - `GITHUB_TOKEN`: Your GitHub PAT.
-     - `NEXT_PUBLIC_SITE_URL`: `https://aniketyadav.tech`
-4. **Deploy:** Click **Deploy**. Vercel will build the project and assign a production URL.
-5. **Connect Custom Domain:**
-   - Go to **Project Settings** → **Domains**.
-   - Add `aniketyadav.tech` and `www.aniketyadav.tech`.
-   - Update your domain DNS records:
-     - **A Record:** `@` points to `76.76.21.21`
-     - **CNAME Record:** `www` points to `cname.vercel-dns.com`
-
----
-
-## 🔍 SEO & Performance
-
-- **Dynamic Sitemap:** Automatically generated at `/sitemap.xml` with priority ratings and change frequencies.
-- **Search Engine Directives:** Clean `/robots.txt` allowing public indexing while disallowing internal `/api/` endpoints.
-- **Structured Data (JSON-LD):** Implements Schema.org `Person` and `WebSite` graph entities in `<head>` linking verified profiles (GitHub, LinkedIn, X).
-- **Canonical URLs:** Automatic self-referencing canonical tags on every route via `createPageMetadata()`.
-- **Social Previews:** 1200x630 OpenGraph and `summary_large_image` Twitter cards with custom branding.
-- **Self-Hosted Typography:** Google Geist and Geist Mono fonts loaded with zero layout shift (`CLS: 0.00`).
-- **Telemetry:** Built-in Vercel Web Analytics and Speed Insights for real-time visitor and Core Web Vitals telemetry.
-
----
-
-## 📬 Contact & Connect
-
-- **Portfolio:** [aniketyadav.tech](https://aniketyadav.tech)
-- **GitHub:** [@AnniiGCP](https://github.com/AnniiGCP)
-- **LinkedIn:** [in/aniketyadav9099](https://linkedin.com/in/aniketyadav9099/)
-- **X (Twitter):** [@AniketYadav1105](https://x.com/AniketYadav1105)
-- **Email:** [aniketyadav0078@gmail.com](mailto:aniketyadav0078@gmail.com)
-- **Schedule a Call:** [Cal.com 15-Minute Chat](https://cal.com/aniket.yadav/let-s-connect-15-min?overlayCalendar=true)
-
----
-
-## 📄 License
-
-This project is open-source and available under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 
 ```
 MIT License
@@ -429,6 +157,6 @@ Copyright (c) 2026 Aniket Yadav
 ---
 
 <div align="center">
-  <p>Built with curiosity, consistency, late nights, and a passion for creating useful software.</p>
-  <p><strong>© 2026 Aniket Yadav. All rights reserved.</strong></p>
+  <p>Built with late nights, curiosity, and a passion for creating useful software.</p>
+  <p><strong>© 2026 Aniket Yadav</strong></p>
 </div>
