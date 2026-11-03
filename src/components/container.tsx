@@ -9,7 +9,6 @@ export function Container({
 }) {
   return (
     <div
-      data-scroll-section
       className={cn(
         "mx-auto w-full max-w-(--portfolio-content-width) px-5 sm:px-0",
         className,

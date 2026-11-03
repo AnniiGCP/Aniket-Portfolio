@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/config/meta";
 import { PersonJsonLd } from "@/components/person-json-ld";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import "./globals.css";
 
@@ -25,8 +26,8 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   icons: {
-    icon: "/assets/avatar-smile.png",
-    apple: "/assets/avatar-smile.png",
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
   },
 };
 
@@ -42,7 +43,13 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <PersonJsonLd />
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <GoogleAnalytics />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
           <TooltipProvider>
             <div className="relative flex min-h-screen flex-col bg-green-grid">
               <SiteHeader />
@@ -53,7 +60,7 @@ export default function RootLayout({
               <CommandMenu />
               <CursorPet />
             </div>
-            <Analytics />
+            {process.env.NODE_ENV === "production" && <Analytics />}
           </TooltipProvider>
         </ThemeProvider>
       </body>

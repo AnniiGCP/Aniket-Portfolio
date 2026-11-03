@@ -9,5 +9,8 @@ export const rotatingTitles = [
   "Cloud & DevOps Enthusiast",
   "Full-Stack Developer",
   "Curious Builder",
-  "Developer Tools Enthusiast"
+  "Developer Tools Enthusiast",
+  "Always ready to learn new things",
+  "Traveller",
+  "Creator",
 ];

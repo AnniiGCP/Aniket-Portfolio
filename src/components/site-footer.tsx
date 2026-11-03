@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { EnvelopeSimple, LinkedinLogo, XLogo } from "@phosphor-icons/react/dist/ssr";
 import { Container } from "@/components/container";
-
 import { GitHubButton } from "@/components/ui/github-button";
 
 const footerSocial = [
@@ -13,13 +12,13 @@ const footerSocial = [
 export function SiteFooter() {
   return (
     <footer className="border-t border-border/60">
-      <Container className="flex flex-col items-center gap-6 py-8 sm:flex-row sm:items-center sm:justify-between">
-        <div className="text-center font-mono text-sm text-secondary sm:text-left">
+      <Container className="flex flex-col items-center gap-4 py-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="text-center font-mono text-xs text-secondary sm:text-left sm:text-sm">
           <p>© 2026 Aniket Yadav</p>
-          <p className="mt-1">Built with love, late nights &amp; endless chai ☕</p>
+          <p className="mt-0.5 whitespace-nowrap">Dreamed in pixels, coded at midnight, shipped with chai. ☕</p>
         </div>
 
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:gap-6">
+        <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
           <GitHubButton />
 
           <div className="flex items-center gap-2">
@@ -32,9 +31,9 @@ export function SiteFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.name}
-                  className="flex size-9 items-center justify-center rounded-lg border border-border text-secondary transition-colors hover:bg-muted hover:text-foreground"
+                  className="flex size-8 items-center justify-center rounded-lg border border-border text-secondary transition-colors hover:bg-muted hover:text-foreground sm:size-9"
                 >
-                  <Icon className="size-5" />
+                  <Icon className="size-4 sm:size-5" />
                 </Link>
               );
             })}
@@ -44,4 +43,3 @@ export function SiteFooter() {
     </footer>
   );
 }
-

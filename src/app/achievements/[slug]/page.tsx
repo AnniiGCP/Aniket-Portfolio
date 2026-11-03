@@ -55,11 +55,11 @@ export default async function AchievementDetailPage({
           shadowIntensity="md"
           borderRadius="18px"
           blurIntensity="md"
-          className="mt-6"
+          className="mt-6 overflow-hidden"
         >
           <AchievementPhoto
             achievement={achievement}
-            className="aspect-[16/10] w-full sm:aspect-[2/1]"
+            className="aspect-[4/3] w-full max-h-[560px]"
             priority
           />
           <div className="space-y-4 p-5 sm:p-6">
@@ -85,7 +85,7 @@ export default async function AchievementDetailPage({
         </LiquidGlassCard>
       </Container>
 
-      {hasGallery ? (
+      {hasGallery && (
         <Container>
           <h2 className="text-lg font-semibold tracking-tight">Photos</h2>
           <p className="mt-1 text-sm text-secondary">
@@ -96,12 +96,6 @@ export default async function AchievementDetailPage({
             title={achievement.organization}
             className="mt-6"
           />
-        </Container>
-      ) : (
-        <Container>
-          <div className="rounded-xl border border-dashed border-border bg-muted/30 px-6 py-10 text-center">
-            <p className="text-sm text-secondary">Photos coming soon.</p>
-          </div>
         </Container>
       )}
     </div>

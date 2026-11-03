@@ -8,25 +8,17 @@ export function ProfileAvatar({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "group relative size-24 shrink-0 cursor-pointer overflow-hidden rounded-full bg-blue-300 dark:bg-yellow-300",
+        "group relative size-24 shrink-0 overflow-hidden rounded-full border-2 border-background shadow-md bg-muted",
         className,
       )}
     >
       <Image
         src={heroConfig.avatar}
         alt={`${heroConfig.name} profile`}
-        width={96}
-        height={96}
-        className="size-full rounded-full object-cover transition-opacity duration-300 group-hover:opacity-0"
+        fill
+        sizes="96px"
+        className="size-full rounded-full object-cover transition-transform duration-300 group-hover:scale-105"
         priority
-      />
-      <Image
-        src={heroConfig.avatarSmile}
-        alt={`${heroConfig.name} smiling`}
-        width={96}
-        height={96}
-        className="absolute inset-0 size-full rounded-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        loading="lazy"
       />
     </div>
   );

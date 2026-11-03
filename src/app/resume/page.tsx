@@ -34,6 +34,7 @@ export default function ResumePage() {
             <Link
               href={resumeConfig.downloadUrl}
               target="_blank"
+              download="Aniket_Yadav_Resume.pdf"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium transition-colors hover:bg-muted"
             >
@@ -52,9 +53,9 @@ export default function ResumePage() {
           blurIntensity="md"
         >
           <iframe
-            src={resumeConfig.embedUrl}
-            title="Aniket Yadav resume"
-            className="aspect-[3/4] w-full min-h-[70vh] bg-muted sm:aspect-auto sm:min-h-[80vh]"
+            src="/assets/aniket-resume.pdf#view=FitH"
+            title="Aniket Yadav Resume"
+            className="aspect-[3/4] w-full min-h-[75vh] bg-muted sm:aspect-auto sm:min-h-[85vh] rounded-[16px] border-0"
             allow="autoplay"
           />
         </LiquidGlassCard>

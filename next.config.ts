@@ -24,6 +24,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "images.weserv.nl",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.simpleicons.org",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
     ],
   },
 };

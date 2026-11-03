@@ -2,48 +2,150 @@ export type ContributionDay = {
   date: string;
   count: number;
   level: number;
+  weekday: number;
 };
 
-export type GitHubContributions = {
-  total: { lastYear: number };
-  contributions: ContributionDay[];
+export type MonthLabel = {
+  month: string;
+  weekIndex: number;
 };
 
-export async function getGitHubContributions(
-  username: string,
-): Promise<GitHubContributions | null> {
-  try {
-    const res = await fetch(
-      `https://github-contributions-api.jogruber.de/v4/${username}?y=last`,
-      { next: { revalidate: 3600 } },
-    );
-    if (!res.ok) return null;
-    return res.json();
-  } catch {
-    return null;
-  }
+export type CalendarData = {
+  total: number;
+  year: string;
+  weeks: ContributionDay[][];
+  monthLabels: MonthLabel[];
+};
+
+const GITHUB_GRAPHQL_URL = "https://api.github.com/graphql";
+
+function getLevel(count: number, levelStr?: string): number {
+  if (levelStr === "FOURTH_QUARTILE") return 4;
+  if (levelStr === "THIRD_QUARTILE") return 3;
+  if (levelStr === "SECOND_QUARTILE") return 2;
+  if (levelStr === "FIRST_QUARTILE") return 1;
+  if (count >= 11) return 4;
+  if (count >= 7) return 3;
+  if (count >= 4) return 2;
+  if (count >= 1) return 1;
+  return 0;
 }
 
-export function groupContributionsByWeek(contributions: ContributionDay[]) {
-  const weeks: ContributionDay[][] = [];
-  let week: ContributionDay[] = [];
+export async function fetchGitHubContributions(year = "2026"): Promise<CalendarData | null> {
+  const token =
+    process.env.GITHUB_TOKEN ??
+    process.env.GH_TOKEN ??
+    process.env.GITHUB_PAT;
 
-  contributions.forEach((day, index) => {
-    if (index === 0) {
-      const pad = new Date(day.date).getDay();
-      for (let i = 0; i < pad; i++) {
-        week.push({ date: "", count: 0, level: -1 });
+  let fromDate: string | undefined;
+  let toDate: string | undefined;
+
+  if (year === "2026" || year === "last") {
+    const now = new Date();
+    const oneYearAgo = new Date();
+    oneYearAgo.setDate(now.getDate() - 364);
+    fromDate = oneYearAgo.toISOString();
+    toDate = now.toISOString();
+  } else if (year === "2025") {
+    fromDate = "2025-01-01T00:00:00Z";
+    toDate = "2025-12-31T23:59:59Z";
+  } else if (year === "2024") {
+    fromDate = "2024-01-01T00:00:00Z";
+    toDate = "2024-12-31T23:59:59Z";
+  }
+
+  const query = `
+    query($from: DateTime, $to: DateTime) {
+      viewer {
+        contributionsCollection(from: $from, to: $to) {
+          contributionCalendar {
+            totalContributions
+            weeks {
+              contributionDays {
+                date
+                contributionCount
+                contributionLevel
+                weekday
+              }
+            }
+          }
+        }
       }
     }
+  `;
 
-    week.push(day);
+  try {
+    const res = await fetch(GITHUB_GRAPHQL_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "User-Agent": "aniket-portfolio",
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: JSON.stringify({
+        query,
+        variables: {
+          from: fromDate,
+          to: toDate,
+        },
+      }),
+      next: { revalidate: 1800 },
+    });
 
-    if (week.length === 7) {
-      weeks.push(week);
-      week = [];
+    if (!res.ok) return null;
+
+    const json = await res.json();
+    const cal = json?.data?.viewer?.contributionsCollection?.contributionCalendar;
+    if (!cal) return null;
+
+    interface GQLDay {
+      date: string;
+      contributionCount: number;
+      contributionLevel: string;
+      weekday: number;
     }
-  });
+    interface GQLWeek {
+      contributionDays: GQLDay[];
+    }
 
-  if (week.length) weeks.push(week);
-  return weeks;
+    const weeks: ContributionDay[][] = cal.weeks.map((w: GQLWeek) =>
+      w.contributionDays.map((d: GQLDay) => ({
+        date: d.date,
+        count: d.contributionCount,
+        level: getLevel(d.contributionCount, d.contributionLevel),
+        weekday: d.weekday,
+      }))
+    );
+
+    const monthLabels: MonthLabel[] = [];
+    let lastMonth = "";
+
+    weeks.forEach((week, weekIndex) => {
+      for (const day of week) {
+        if (!day.date) continue;
+        const d = new Date(day.date);
+        const m = d.toLocaleString("en", { month: "short" });
+        if (m !== lastMonth) {
+          if (
+            monthLabels.length === 0 ||
+            weekIndex - monthLabels[monthLabels.length - 1]!.weekIndex >= 3
+          ) {
+            monthLabels.push({ month: m, weekIndex });
+            lastMonth = m;
+          }
+          break;
+        }
+      }
+    });
+
+    return {
+      total: cal.totalContributions,
+      year,
+      weeks,
+      monthLabels,
+    };
+  } catch (err) {
+    console.error("fetchGitHubContributions error:", err);
+    return null;
+  }
 }

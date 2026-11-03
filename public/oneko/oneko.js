@@ -24,10 +24,10 @@
   let sleepAnimationFrame = 0;
   let wakeHintEl = null;
   let zzzEl = null;
-  let wakeText = "Wake up Mowgli";
+  let wakeText = "Wake up Pixel";
   let petName = "";
   let nekoFile = "./oneko.gif";
-  let sleepFile = "./oneko/mowgli-sleep.png";
+  let sleepFile = "./oneko/pixel-sleep.png";
 
   const nekoSpeed = 10;
   const spriteSets = {
@@ -137,7 +137,7 @@
   
     if (curScript && curScript.dataset.name) {
       petName = curScript.dataset.name;
-      nekoEl.id = "mowgli";
+      nekoEl.id = "pixel";
       nekoEl.title = petName;
       nekoEl.setAttribute("aria-label", petName);
     } else {
@@ -162,12 +162,12 @@
     document.body.appendChild(nekoEl);
 
     wakeHintEl = document.createElement("div");
-    wakeHintEl.id = "mowgli-wake-hint";
+    wakeHintEl.id = "pixel-wake-hint";
     wakeHintEl.textContent = wakeText;
     document.body.appendChild(wakeHintEl);
 
     zzzEl = document.createElement("div");
-    zzzEl.id = "mowgli-zzz";
+    zzzEl.id = "pixel-zzz";
     zzzEl.innerHTML = "<span>z</span><span>z</span><span>z</span>";
     document.body.appendChild(zzzEl);
 

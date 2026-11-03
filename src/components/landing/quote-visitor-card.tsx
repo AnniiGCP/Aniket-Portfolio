@@ -3,18 +3,24 @@
 import { useEffect, useRef, useState } from "react";
 import { Container } from "@/components/container";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass";
-import { quoteConfig } from "@/config/quote";
 import { getOrdinalSuffix } from "@/lib/ordinal";
+import { getSessionGitaQuote, DEFAULT_GITA_QUOTE } from "@/lib/gita-quote-session";
+import type { GitaQuote } from "@/data/bhagavadGitaQuotes";
 
 export function QuoteVisitorCard() {
+  const [quote, setQuote] = useState<GitaQuote>(DEFAULT_GITA_QUOTE);
   const [count, setCount] = useState<number | null>(null);
   const [failed, setFailed] = useState(false);
   const hasTriggeredRef = useRef(false);
 
   useEffect(() => {
+    // 1. Retrieve or initialize the session quote once on client mount
+    setQuote(getSessionGitaQuote());
+
     if (hasTriggeredRef.current) return;
     hasTriggeredRef.current = true;
 
+    // 2. Record visitor count
     const recordVisit = async () => {
       try {
         const res = await fetch("/api/visitors", {
@@ -52,11 +58,17 @@ export function QuoteVisitorCard() {
         <div className="grid sm:grid-cols-[1fr_auto]">
           <div className="border-b border-border/50 p-6 sm:border-b-0 sm:border-r sm:p-7">
             <span className="text-4xl leading-none text-muted-foreground sm:text-5xl select-none font-serif">&ldquo;</span>
-            <p className="mt-2 text-sm leading-relaxed text-foreground/90 sm:text-base font-normal">
-              {quoteConfig.text}
+            <p
+              suppressHydrationWarning
+              className="mt-2 text-sm leading-relaxed text-foreground/90 sm:text-base font-normal"
+            >
+              {quote.text}
             </p>
-            <p className="mt-3 text-right text-sm text-muted-foreground">
-              — {quoteConfig.author}
+            <p
+              suppressHydrationWarning
+              className="mt-3 text-right text-sm text-muted-foreground"
+            >
+              — Bhagavad Gita · {quote.chapter}.{quote.verse}
             </p>
           </div>
 

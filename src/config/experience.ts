@@ -14,15 +14,15 @@ export type ExperienceItem = {
 export const experience: ExperienceItem[] = [
   {
     company: "Allegion",
-    role: "Incoming Software Engineer",
+    role: "Incoming Graduate Engineer Trainee (GET)",
     periodShort: "Expected 2027",
-    periodLong: "Incoming Opportunity (~₹7.5 LPA)",
+    periodLong: "Campus Placement Offer",
     locationShort: "Bengaluru, IN",
     locationLong: "Bengaluru, Karnataka, India",
     working: false,
     image: "/assets/allegion-logo.png",
     details: [
-      "Selected through campus placement for an incoming Software Engineering opportunity (~₹7.5 LPA).",
+      "Selected through campus placement for an incoming Graduate Engineer Trainee (GET) role upon graduation.",
       "Focused on developing skills in cloud infrastructure, enterprise systems, Azure DevOps, CI/CD automation and reliable software engineering.",
     ],
     tech: ["Azure", "Azure DevOps", "CI/CD", "Java", "Python", "Linux"],
@@ -35,7 +35,7 @@ export const experience: ExperienceItem[] = [
     locationShort: "Bengaluru, IN",
     locationLong: "Bengaluru, Karnataka, India",
     working: false,
-    image: "/assets/achievements/hire4thon-square.png",
+    image: "/assets/dyashin-logo.png",
     details: [
       "Awarded software engineering internship recognition following 2nd Place finish at the National Level HIRE-4-THON 2026 Hackathon.",
       "Engineered automated quiz generation algorithms, contract-first schema validation, and responsive interactive web interfaces.",

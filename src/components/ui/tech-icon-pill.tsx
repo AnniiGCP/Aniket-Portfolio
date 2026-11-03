@@ -58,3 +58,35 @@ export function TechIconPill({ name, size = "md", className }: TechIconPillProps
     </Tooltip>
   );
 }
+
+export function TechBadge({
+  name,
+  className,
+}: {
+  name: string;
+  className?: string;
+}) {
+  const icon = getTechIcon(name);
+  const iconSrc = icon ? (icon.startsWith("/") ? icon : `https://cdn.simpleicons.org/${icon}`) : null;
+
+  return (
+    <div
+      className={cn(
+        "inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-card/60 px-2.5 py-1 text-xs font-medium text-foreground transition-all hover:border-foreground/30 hover:bg-muted/60",
+        className
+      )}
+    >
+      {iconSrc && (
+        <Image
+          src={iconSrc}
+          alt={name}
+          width={15}
+          height={15}
+          className="size-3.5 shrink-0 object-contain"
+          unoptimized
+        />
+      )}
+      <span>{name}</span>
+    </div>
+  );
+}

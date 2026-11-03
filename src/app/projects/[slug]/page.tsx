@@ -1,4 +1,4 @@
-import { TechIconPill } from "@/components/ui/tech-icon-pill";
+import { TechBadge } from "@/components/ui/tech-icon-pill";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -7,6 +7,7 @@ import { Container } from "@/components/container";
 import { MdxContent } from "@/components/mdx-content";
 import { LiquidGlassCard } from "@/components/ui/liquid-glass";
 import { projects } from "@/config/projects";
+import { siteConfig } from "@/config/meta";
 import { getProjectPost, getProjectPosts } from "@/lib/mdx";
 import { createPageMetadata, pageTitle } from "@/lib/metadata";
 
@@ -51,8 +52,39 @@ export default async function ProjectDetailPage({
   const repoHref = project?.href;
   const websiteHref = project?.website;
 
+
+  const projectUrl = `${siteConfig.url}/projects/${slug}`;
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.url },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": `${siteConfig.url}/projects` },
+      { "@type": "ListItem", "position": 3, "name": title, "item": projectUrl }
+    ]
+  };
+
+  const projectLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": title,
+    "description": description,
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "All",
+    "url": projectUrl,
+    ...(cover ? { "image": cover.startsWith("http") ? cover : `${siteConfig.url}${cover}` } : {}),
+    ...(repoHref ? { "codeRepository": repoHref } : {}),
+    "author": {
+      "@type": "Person",
+      "name": siteConfig.name,
+      "url": siteConfig.url
+    }
+  };
+
   return (
     <div className="space-y-8 pb-16 pt-8">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(projectLd) }} />
       <Container>
         <Link href="/projects" className="text-sm text-secondary hover:text-primary">
           ← Back to projects
@@ -87,7 +119,7 @@ export default async function ProjectDetailPage({
         {tech.length > 0 && (
           <div className="mt-5 flex flex-wrap gap-2.5">
             {tech.map((item) => (
-              <TechIconPill key={item} name={item} size="md" />
+              <TechBadge key={item} name={item} />
             ))}
           </div>
         )}

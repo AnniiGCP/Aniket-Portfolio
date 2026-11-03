@@ -1,13 +1,13 @@
 export const siteConfig = {
   name: "Aniket Yadav",
-  title: "Aniket Yadav | Software Engineer & AI Developer",
+  title: "Aniket Yadav | Software Developer, AI & Cloud",
   description:
-    "Aniket Yadav is a software engineer and AI developer building full-stack applications, AI-powered developer tools and cloud-oriented solutions.",
-  url: "https://codebrain-dev.vercel.app",
+    "Explore Aniket Yadav's developer portfolio featuring AI-powered applications, full-stack projects, cloud technologies, software engineering and practical development work.",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://aniketyadav.tech",
   githubUsername: "AnniiGCP",
-  twitterHandle: "@aniketyadav",
-  ogImage: "/assets/og-image.jpg",
-  ogImageWidth: 1024,
-  ogImageHeight: 668,
+  twitterHandle: "@AniketYadav1105",
+  ogImage: "/assets/og-image.png",
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
   copyright: "All rights reserved.",
 };

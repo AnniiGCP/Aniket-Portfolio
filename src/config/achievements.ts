@@ -26,9 +26,11 @@ export const achievements: Achievement[] = [
       "Awarded software engineering internship opportunity with Dyashin Technosoft in recognition of contract-first architecture and system execution.",
     ],
     tech: ["Python", "React", "FastAPI", "SQLite"],
-    image: "/assets/achievements/hire4thon-square.png",
+    image: "/assets/achievements/hire4thon.png",
     gallery: [
       "/assets/achievements/hire4thon.png",
+      "/assets/achievements/hire4thon-presentation.png",
+      "/assets/achievements/hire4thon-workstation.jpg",
     ],
     featured: true,
   },

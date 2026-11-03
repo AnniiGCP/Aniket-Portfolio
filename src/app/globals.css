@@ -259,7 +259,8 @@ body {
   margin-bottom: 1rem;
 }
 
-#mowgli-wake-hint {
+#mowgli-wake-hint,
+#pixel-wake-hint {
   position: fixed;
   z-index: 2147483647;
   display: none;
@@ -275,11 +276,13 @@ body {
   box-shadow: 0 4px 12px color-mix(in srgb, var(--foreground) 8%, transparent);
 }
 
-#mowgli.is-asleep {
+#mowgli.is-asleep,
+#pixel.is-asleep {
   cursor: pointer;
 }
 
-#mowgli-zzz {
+#mowgli-zzz,
+#pixel-zzz {
   position: fixed;
   z-index: 2147483647;
   display: none;
@@ -288,33 +291,37 @@ body {
   font-weight: 700;
   line-height: 1;
   color: oklch(0.58 0 0);
-  animation: mowgli-zzz-float 2s ease-in-out infinite;
+  animation: pixel-zzz-float 2s ease-in-out infinite;
 }
 
-#mowgli-zzz span {
+#mowgli-zzz span,
+#pixel-zzz span {
   display: inline-block;
 }
 
-#mowgli-zzz span:nth-child(1) {
+#mowgli-zzz span:nth-child(1),
+#pixel-zzz span:nth-child(1) {
   font-size: 8px;
   opacity: 0.45;
   transform: translateY(4px);
 }
 
-#mowgli-zzz span:nth-child(2) {
+#mowgli-zzz span:nth-child(2),
+#pixel-zzz span:nth-child(2) {
   font-size: 9px;
   opacity: 0.65;
   margin-left: 1px;
   transform: translateY(1px);
 }
 
-#mowgli-zzz span:nth-child(3) {
+#mowgli-zzz span:nth-child(3),
+#pixel-zzz span:nth-child(3) {
   font-size: 11px;
   opacity: 0.85;
   margin-left: 2px;
 }
 
-@keyframes mowgli-zzz-float {
+@keyframes pixel-zzz-float {
   0%,
   100% {
     transform: translateY(0);
@@ -432,8 +439,7 @@ body {
 
 /* Offscreen sections retain their HTML while the browser defers layout/painting. */
 main [data-scroll-section] {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 400px;
+  /* content-visibility removed for buttery smooth scrolling */
 }
 
 .scroll-reveal-pending {

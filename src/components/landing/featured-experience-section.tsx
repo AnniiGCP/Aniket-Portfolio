@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Container } from "@/components/container";
 import { achievements, type Achievement } from "@/config/achievements";
 import { experience, type ExperienceItem } from "@/config/experience";
-import { TechIconPill } from "@/components/ui/tech-icon-pill";
+import { TechBadge } from "@/components/ui/tech-icon-pill";
 
 type FeaturedItem =
   | {
@@ -110,7 +110,7 @@ function FeaturedExperienceItem({
           </h3>
           <div className="mt-3.5 flex flex-wrap gap-2.5">
             {item.tech.map((tech) => (
-              <TechIconPill key={`${item.title}-${tech}`} name={tech} size="md" />
+              <TechBadge key={`${item.title}-${tech}`} name={tech} />
             ))}
           </div>
         </div>

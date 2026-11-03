@@ -1,16 +1,16 @@
 import type { MetadataRoute } from "next";
 import { achievements } from "@/config/achievements";
 import { siteConfig } from "@/config/meta";
+import { projects } from "@/config/projects";
 import { getBlogPosts, getProjectPosts } from "@/lib/mdx";
 
 const staticRoutes: MetadataRoute.Sitemap = [
-  { url: siteConfig.url, changeFrequency: "weekly", priority: 1 },
+  { url: siteConfig.url, changeFrequency: "weekly", priority: 1.0 },
   { url: `${siteConfig.url}/about`, changeFrequency: "monthly", priority: 0.9 },
   { url: `${siteConfig.url}/projects`, changeFrequency: "weekly", priority: 0.9 },
   { url: `${siteConfig.url}/work`, changeFrequency: "monthly", priority: 0.8 },
-  { url: `${siteConfig.url}/blog`, changeFrequency: "weekly", priority: 0.8 },
   { url: `${siteConfig.url}/resume`, changeFrequency: "monthly", priority: 0.8 },
-  { url: `${siteConfig.url}/achievements`, changeFrequency: "monthly", priority: 0.7 },
+  { url: `${siteConfig.url}/achievements`, changeFrequency: "monthly", priority: 0.8 },
   { url: `${siteConfig.url}/books`, changeFrequency: "monthly", priority: 0.6 },
   { url: `${siteConfig.url}/favourites`, changeFrequency: "monthly", priority: 0.6 },
 ];
@@ -38,15 +38,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: `${siteConfig.url}/achievements/${item.slug}`,
     lastModified: new Date(`${item.year}-12-31`),
     changeFrequency: "yearly",
-    priority: 0.6,
-  }));
-
-  const projectRoutes: MetadataRoute.Sitemap = projectPosts.map((post) => ({
-    url: `${siteConfig.url}/projects/${post.slug}`,
-    lastModified: parseDate(post.date),
-    changeFrequency: "monthly",
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...blogRoutes, ...achievementRoutes, ...projectRoutes];
+  const allProjectSlugs = Array.from(
+    new Set([
+      ...projects.map((p) => p.slug),
+      ...projectPosts.map((p) => p.slug),
+    ]),
+  );
+
+  const projectRoutes: MetadataRoute.Sitemap = allProjectSlugs.map((slug) => {
+    const post = projectPosts.find((p) => p.slug === slug);
+    const proj = projects.find((p) => p.slug === slug);
+    return {
+      url: `${siteConfig.url}/projects/${slug}`,
+      lastModified: parseDate(post?.date ?? proj?.date),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    };
+  });
+
+  return [...staticRoutes, ...projectRoutes, ...achievementRoutes, ...blogRoutes];
 }

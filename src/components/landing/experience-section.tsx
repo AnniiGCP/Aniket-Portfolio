@@ -1,8 +1,7 @@
 "use client";
 
-import { TechIconPill } from "@/components/ui/tech-icon-pill";
-
-
+import Image from "next/image";
+import { TechBadge } from "@/components/ui/tech-icon-pill";
 import { Code, Plus, X } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useState } from "react";
@@ -32,8 +31,18 @@ function ExperienceCard({
         <div className="hidden justify-center pt-1 sm:flex">
           <span className="size-2 rounded-full bg-secondary/25" />
         </div>
-        <div className="flex size-11 items-center justify-center rounded-xl border border-border bg-background/70 text-secondary shadow-sm">
-          <Code className="size-5" />
+        <div className="relative flex size-11 items-center justify-center overflow-hidden rounded-xl border border-border bg-background/80 shadow-sm">
+          {job.image ? (
+            <Image
+              src={job.image}
+              alt={job.company}
+              fill
+              sizes="44px"
+              className="object-contain p-1.5"
+            />
+          ) : (
+            <Code className="size-5 text-secondary" />
+          )}
         </div>
         <div className="min-w-0 space-y-3">
           <div className="flex flex-wrap items-center gap-2">
@@ -48,7 +57,7 @@ function ExperienceCard({
           <div>
             <p className="text-xl font-bold tracking-tight">{job.role}</p>
             <p className="mt-1 text-base text-secondary">
-              Internship
+              Opportunity
               <span className="mx-2 text-border">|</span>
               <span className="md:hidden">{job.periodShort}</span>
               <span className="hidden md:inline">{job.periodLong}</span>
@@ -57,17 +66,17 @@ function ExperienceCard({
         </div>
         <div className="flex items-start justify-between gap-4 sm:justify-end">
           <p className="text-sm text-secondary sm:hidden">{job.locationShort}</p>
-        {hasDetails && (
-          <button
-            type="button"
-            onClick={onToggle}
-            aria-expanded={open}
-            aria-controls={`experience-${job.company}`}
-            className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-secondary transition-colors hover:bg-muted hover:text-foreground"
-          >
-            {open ? <X className="size-4" /> : <Plus className="size-4" />}
-          </button>
-        )}
+          {hasDetails && (
+            <button
+              type="button"
+              onClick={onToggle}
+              aria-expanded={open}
+              aria-controls={`experience-${job.company}`}
+              className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-secondary transition-colors hover:bg-muted hover:text-foreground"
+            >
+              {open ? <X className="size-4" /> : <Plus className="size-4" />}
+            </button>
+          )}
         </div>
       </div>
       {open && (
@@ -83,7 +92,7 @@ function ExperienceCard({
           {job.tech && (
             <div className="flex flex-wrap gap-2 pt-1">
               {job.tech.map((item) => (
-                <TechIconPill key={item} name={item} size="sm" />
+                <TechBadge key={item} name={item} />
               ))}
             </div>
           )}

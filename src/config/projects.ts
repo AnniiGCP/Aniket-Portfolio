@@ -30,7 +30,7 @@ export const projects: Project[] = [
     title: "ArcadeVerse",
     date: "09.2026",
     description:
-      "An independent analytics platform calculating Google Cloud Arcade points, tracking cohort milestones, and projecting swag tier readiness with 5,486+ visitors and 4,987+ profiles analyzed.",
+      "An independent analytics platform calculating Google Cloud Arcade points, tracking cohort milestones, and projecting swag tier readiness with 5,500+ visitors and 5,000+ profiles analyzed.",
     tech: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Vercel"],
     href: "https://github.com/AnniiGCP/arcadeverse-dev",
     website: "https://arcadeverse.vercel.app",

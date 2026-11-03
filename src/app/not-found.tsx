@@ -1,6 +1,16 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "404: Page Not Found | Aniket Yadav",
+  description: "The requested page could not be found.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function NotFound() {
   return (

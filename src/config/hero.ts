@@ -1,10 +1,10 @@
 export const heroConfig = {
   name: "Aniket Yadav",
   email: "aniketyadav0078@gmail.com",
-  calendarUrl: "mailto:aniketyadav0078@gmail.com?subject=Connect%20with%20Aniket",
-  bio: "I'm an AI and cloud-focused software engineer building full-stack applications, intelligent developer tools, and practical automation solutions.",
-  avatar: "/assets/avatar.png",
-  avatarSmile: "/assets/avatar-smile.png",
+  calendarUrl: "https://cal.com/aniket.yadav/let-s-connect-15-min?overlayCalendar=true",
+  bio: "I'm a DevOps-focused software engineer passionate about AI, cloud technologies, and building automated solutions to real-world problems.",
+  avatar: "/assets/avatar.jpg",
+  avatarSmile: "/assets/avatar.jpg",
   timezone: "Asia/Kolkata",
   location: "Bengaluru, Karnataka, India",
 };
