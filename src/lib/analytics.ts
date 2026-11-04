@@ -1,5 +1,12 @@
-// Type-safe Google Analytics 4 utility
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+// Type-safe Google Analytics 4 & Google Tag Manager utility
+export const GA_MEASUREMENT_ID =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ??
+  process.env.NEXT_PUBLIC_GA_ID ??
+  "G-3G8QV4MYF7";
+
+export const GTM_ID =
+  process.env.NEXT_PUBLIC_GTM_ID ??
+  "GTM-PK3M4BBC";
 
 type GTagEvent = {
   action: string;
@@ -18,7 +25,7 @@ declare global {
 
 /**
  * Tracks a custom event in Google Analytics 4.
- * Safely no-ops in local development if no measurement ID is configured.
+ * Safely no-ops in SSR or if gtag is not yet loaded.
  */
 export function trackEvent(event: GTagEvent) {
   if (typeof window === "undefined" || !window.gtag || !GA_MEASUREMENT_ID) {
@@ -61,4 +68,3 @@ export function trackResumeDownload(format: "pdf" | "view") {
     label: format,
   });
 }
-

@@ -3,7 +3,7 @@
 import { useEffect, Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import Script from "next/script";
-import { GA_MEASUREMENT_ID, trackPageView } from "@/lib/analytics";
+import { GA_MEASUREMENT_ID, GTM_ID, trackPageView } from "@/lib/analytics";
 
 function AnalyticsTracker() {
   const pathname = usePathname();
@@ -25,10 +25,21 @@ export function GoogleAnalytics() {
 
   return (
     <>
+      {/* Google Tag (gtag.js) for GA4 */}
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
       />
+
+      {/* Google Tag Manager Container Script */}
+      {GTM_ID && (
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`}
+        />
+      )}
+
+      {/* Google Tag initialization & dataLayer setup */}
       <Script
         id="google-analytics-init"
         strategy="afterInteractive"
@@ -41,6 +52,7 @@ export function GoogleAnalytics() {
               page_path: window.location.pathname,
               send_page_view: true
             });
+            ${GTM_ID ? `gtag('config', '${GTM_ID}');` : ""}
           `,
         }}
       />
@@ -50,4 +62,3 @@ export function GoogleAnalytics() {
     </>
   );
 }
-
