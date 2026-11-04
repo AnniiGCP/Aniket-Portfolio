@@ -1,3 +1,5 @@
+import { siteConfig } from "@/config/meta";
+
 export type ContributionDay = {
   date: string;
   count: number;
@@ -37,16 +39,13 @@ export async function fetchGitHubContributions(year = "2026"): Promise<CalendarD
     process.env.GH_TOKEN ??
     process.env.GITHUB_PAT;
 
+  const username = siteConfig.githubUsername || "AnniiGCP";
+
   let fromDate: string | undefined;
   let toDate: string | undefined;
+  const isHistorical = year !== "2026" && year !== "last";
 
-  if (year === "2026" || year === "last") {
-    const now = new Date();
-    const oneYearAgo = new Date();
-    oneYearAgo.setDate(now.getDate() - 364);
-    fromDate = oneYearAgo.toISOString();
-    toDate = now.toISOString();
-  } else if (year === "2025") {
+  if (year === "2025") {
     fromDate = "2025-01-01T00:00:00Z";
     toDate = "2025-12-31T23:59:59Z";
   } else if (year === "2024") {
@@ -54,25 +53,52 @@ export async function fetchGitHubContributions(year = "2026"): Promise<CalendarD
     toDate = "2024-12-31T23:59:59Z";
   }
 
-  const query = `
-    query($from: DateTime, $to: DateTime) {
-      viewer {
-        contributionsCollection(from: $from, to: $to) {
-          contributionCalendar {
-            totalContributions
-            weeks {
-              contributionDays {
-                date
-                contributionCount
-                contributionLevel
-                weekday
+  // When querying the rolling past year (matching GitHub profile view), omit from/to to get full 52-53 weeks
+  const query = isHistorical
+    ? `
+      query($login: String!, $from: DateTime, $to: DateTime) {
+        user(login: $login) {
+          contributionsCollection(from: $from, to: $to) {
+            contributionCalendar {
+              totalContributions
+              weeks {
+                contributionDays {
+                  date
+                  contributionCount
+                  contributionLevel
+                  weekday
+                }
               }
             }
           }
         }
       }
-    }
-  `;
+    `
+    : `
+      query($login: String!) {
+        user(login: $login) {
+          contributionsCollection {
+            contributionCalendar {
+              totalContributions
+              weeks {
+                contributionDays {
+                  date
+                  contributionCount
+                  contributionLevel
+                  weekday
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+  const variables: Record<string, string | undefined> = { login: username };
+  if (isHistorical) {
+    variables.from = fromDate;
+    variables.to = toDate;
+  }
 
   try {
     const res = await fetch(GITHUB_GRAPHQL_URL, {
@@ -84,19 +110,22 @@ export async function fetchGitHubContributions(year = "2026"): Promise<CalendarD
       },
       body: JSON.stringify({
         query,
-        variables: {
-          from: fromDate,
-          to: toDate,
-        },
+        variables,
       }),
       next: { revalidate: 1800 },
     });
 
-    if (!res.ok) return null;
+    if (!res.ok) {
+      console.warn(`GitHub GraphQL failed with status ${res.status}`);
+      return null;
+    }
 
     const json = await res.json();
-    const cal = json?.data?.viewer?.contributionsCollection?.contributionCalendar;
-    if (!cal) return null;
+    const cal = json?.data?.user?.contributionsCollection?.contributionCalendar;
+    if (!cal) {
+      console.warn("No contributionCalendar found in GitHub response:", json);
+      return null;
+    }
 
     interface GQLDay {
       date: string;

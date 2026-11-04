@@ -254,16 +254,14 @@
 
   function positionWakeHint() {
     if (!wakeHintEl) return;
-    wakeHintEl.style.left = "0px";
-    wakeHintEl.style.top = "0px";
-    wakeHintEl.style.transform = `translate3d(${nekoPosX - 24}px, ${nekoPosY + 22}px, 0)`;
+    wakeHintEl.style.left = `${nekoPosX - 24}px`;
+    wakeHintEl.style.top = `${nekoPosY + 22}px`;
   }
 
   function positionZzz() {
     if (!zzzEl) return;
-    zzzEl.style.left = "0px";
-    zzzEl.style.top = "0px";
-    zzzEl.style.transform = `translate3d(${nekoPosX - 2}px, ${nekoPosY - 26}px, 0)`;
+    zzzEl.style.left = `${nekoPosX - 2}px`;
+    zzzEl.style.top = `${nekoPosY - 26}px`;
   }
 
   function applySleepPose() {

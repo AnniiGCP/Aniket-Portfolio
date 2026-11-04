@@ -15,7 +15,7 @@ export function SiteFooter() {
       <Container className="flex flex-col items-center gap-4 py-5 sm:flex-row sm:items-center sm:justify-between">
         <div className="text-center font-mono text-xs text-secondary sm:text-left sm:text-sm">
           <p>© 2026 Aniket Yadav</p>
-          <p className="mt-0.5 whitespace-nowrap">Dreamed in pixels, coded at midnight, shipped with chai. ☕</p>
+          <p className="mt-0.5 whitespace-nowrap">Dreamed in pixels, coded at midnight, shipped with chai.</p>
         </div>
 
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-5">
