@@ -19,6 +19,7 @@ export const techIconMap: Record<string, string> = {
   "Node.js": "/assets/icons/nodejs.svg",
   Express: "/assets/icons/express.svg",
   FastAPI: "/assets/icons/fastapi.svg",
+  "Spring Boot": "springboot",
   Pydantic: "pydantic",
   SQLAlchemy: "sqlalchemy",
   WebSockets: "socketdotio",
@@ -56,6 +57,7 @@ export const techIconMap: Record<string, string> = {
 
   // AI & ML
   PyTorch: "/assets/icons/pytorch.svg",
+  Ollama: "ollama",
   LangChain: "langchain",
   "Tree-sitter": "/assets/icons/c.svg",
   "Whisper STT": "/assets/icons/python.svg",

@@ -13,6 +13,18 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "vectorforge-ai",
+    title: "VECTORFORGE AI",
+    date: "11.2026",
+    description:
+      "A custom-built Java vector database and local Retrieval-Augmented Generation (RAG) engine featuring HNSW, KD-Tree, Brute Force search, real-time PCA visualization, and Ollama inference.",
+    tech: ["Java", "Spring Boot", "React", "Vector DB", "Ollama", "HNSW"],
+    href: "https://github.com/AnniiGCP/VECTORFORGE-AI",
+    featured: true,
+    cover: "/assets/projects/vectorforge-ai.png",
+    gradient: "from-cyan-500/25 via-blue-500/15 to-indigo-500/25",
+  },
+  {
     slug: "codebrain-ai",
     title: "CodeBrain AI",
     date: "10.2026",
