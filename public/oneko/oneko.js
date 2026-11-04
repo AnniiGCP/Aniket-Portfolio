@@ -153,8 +153,10 @@
     nekoEl.style.pointerEvents = "auto";
     nekoEl.style.cursor = "pointer";
     nekoEl.style.imageRendering = "pixelated";
-    nekoEl.style.left = `${nekoPosX - 16}px`;
-    nekoEl.style.top = `${nekoPosY - 16}px`;
+    nekoEl.style.left = "0px";
+    nekoEl.style.top = "0px";
+    nekoEl.style.willChange = "transform";
+    nekoEl.style.transform = `translate3d(${nekoPosX - 16}px, ${nekoPosY - 16}px, 0)`;
     nekoEl.style.zIndex = 2147483647;
 
     nekoEl.style.backgroundImage = `url(${nekoFile})`;
@@ -198,7 +200,7 @@
     document.addEventListener("mousemove", function (event) {
       mousePosX = event.clientX;
       mousePosY = event.clientY;
-    });
+    }, { passive: true });
     
     if (persistPosition) {
       window.addEventListener("beforeunload", function (event) {
@@ -226,6 +228,10 @@
     if (!nekoEl.isConnected) {
       return;
     }
+    if (document.hidden) {
+      window.requestAnimationFrame(onAnimationFrame);
+      return;
+    }
     if (!lastFrameTimestamp) {
       lastFrameTimestamp = timestamp;
     }
@@ -248,14 +254,16 @@
 
   function positionWakeHint() {
     if (!wakeHintEl) return;
-    wakeHintEl.style.left = `${nekoPosX - 24}px`;
-    wakeHintEl.style.top = `${nekoPosY + 22}px`;
+    wakeHintEl.style.left = "0px";
+    wakeHintEl.style.top = "0px";
+    wakeHintEl.style.transform = `translate3d(${nekoPosX - 24}px, ${nekoPosY + 22}px, 0)`;
   }
 
   function positionZzz() {
     if (!zzzEl) return;
-    zzzEl.style.left = `${nekoPosX - 2}px`;
-    zzzEl.style.top = `${nekoPosY - 26}px`;
+    zzzEl.style.left = "0px";
+    zzzEl.style.top = "0px";
+    zzzEl.style.transform = `translate3d(${nekoPosX - 2}px, ${nekoPosY - 26}px, 0)`;
   }
 
   function applySleepPose() {
@@ -407,8 +415,10 @@
     nekoPosX = Math.min(Math.max(16, nekoPosX), window.innerWidth - 16);
     nekoPosY = Math.min(Math.max(16, nekoPosY), window.innerHeight - 16);
 
-    nekoEl.style.left = `${nekoPosX - 16}px`;
-    nekoEl.style.top = `${nekoPosY - 16}px`;
+    nekoEl.style.left = "0px";
+    nekoEl.style.top = "0px";
+    nekoEl.style.willChange = "transform";
+    nekoEl.style.transform = `translate3d(${nekoPosX - 16}px, ${nekoPosY - 16}px, 0)`;
   }
 
   init();

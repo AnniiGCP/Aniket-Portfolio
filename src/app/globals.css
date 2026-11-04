@@ -201,6 +201,7 @@ body {
 
 .animate-vinyl-spin {
   animation: vinyl-spin 4s linear infinite;
+  will-change: transform;
 }
 
 .vinyl-disc {

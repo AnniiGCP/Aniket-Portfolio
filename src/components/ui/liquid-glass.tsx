@@ -4,9 +4,9 @@ import { cn } from "@/lib/utils";
 type Intensity = "sm" | "md" | "lg";
 
 const blurMap: Record<Intensity, string> = {
-  sm: "18px",
-  md: "28px",
-  lg: "38px",
+  sm: "10px",
+  md: "14px",
+  lg: "18px",
 };
 
 export function LiquidGlassCard({
@@ -42,8 +42,9 @@ export function LiquidGlassCard({
       )}
       style={{
         borderRadius,
-        backdropFilter: `blur(${blurMap[blurIntensity]}) saturate(1.8) contrast(1.04)`,
-        WebkitBackdropFilter: `blur(${blurMap[blurIntensity]}) saturate(1.8) contrast(1.04)`,
+        backdropFilter: `blur(${blurMap[blurIntensity]}) saturate(1.4)`,
+        WebkitBackdropFilter: `blur(${blurMap[blurIntensity]}) saturate(1.4)`,
+        transform: "translateZ(0)",
         ...style,
       }}
     >

@@ -72,7 +72,11 @@ export function SpotifyLastPlayed() {
     }
 
     void loadSpotifyStatus();
-    const interval = window.setInterval(() => void loadSpotifyStatus(), 20_000);
+    const interval = window.setInterval(() => {
+      if (!document.hidden) {
+        void loadSpotifyStatus();
+      }
+    }, 20_000);
 
     return () => {
       mounted = false;

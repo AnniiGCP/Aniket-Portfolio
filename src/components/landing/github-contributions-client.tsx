@@ -1,10 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
 import { siteConfig } from "@/config/meta";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import type { CalendarData } from "@/lib/github";
 
@@ -33,6 +33,12 @@ function formatDateTooltip(dateStr: string): string {
 }
 
 export function GitHubContributionsClient({ initialData }: { initialData: CalendarData | null }) {
+  const [tooltip, setTooltip] = useState<{
+    text: string;
+    x: number;
+    y: number;
+  } | null>(null);
+
   const weeks = initialData?.weeks ?? [];
   const monthLabels = initialData?.monthLabels ?? [];
   const total = initialData?.total ?? 0;
@@ -44,7 +50,21 @@ export function GitHubContributionsClient({ initialData }: { initialData: Calend
       <SectionHeading title="GitHub Activity" uppercase />
 
       {/* Grid sitting directly on page background */}
-      <div className="mt-6">
+      <div className="relative mt-6" onMouseLeave={() => setTooltip(null)}>
+        {/* Single shared lightweight tooltip instead of 364 Radix instances */}
+        {tooltip && (
+          <div
+            role="tooltip"
+            className="pointer-events-none fixed z-50 -translate-x-1/2 -translate-y-full rounded border border-border/80 bg-popover px-2.5 py-1 text-xs text-popover-foreground shadow-md transition-opacity duration-75"
+            style={{
+              left: `${tooltip.x}px`,
+              top: `${tooltip.y}px`,
+            }}
+          >
+            <p>{tooltip.text}</p>
+          </div>
+        )}
+
         <div className="overflow-x-auto pb-1 scrollbar-thin">
           <div style={{ minWidth: `${gridWidth}px` }}>
             {/* Month Labels */}
@@ -74,27 +94,36 @@ export function GitHubContributionsClient({ initialData }: { initialData: Calend
                     } on ${formatDateTooltip(day.date)}`;
 
                     return (
-                      <Tooltip key={day.date || `${weekIndex}-${dayIndex}`}>
-                        <TooltipTrigger asChild>
-                          <div
-                            tabIndex={0}
-                            aria-label={countText}
-                            className={cn(
-                              "rounded-[3px] transition-all duration-150 hover:scale-110 hover:ring-1 hover:ring-foreground/40",
-                              day.level < 0
-                                ? "bg-transparent"
-                                : LEVEL_COLORS[day.level] ?? LEVEL_COLORS[0]
-                            )}
-                            style={{ width: CELL, height: CELL }}
-                          />
-                        </TooltipTrigger>
-                        <TooltipContent
-                          side="top"
-                          className="bg-popover text-popover-foreground text-xs py-1 px-2.5 rounded shadow-md border border-border/80"
-                        >
-                          <p>{countText}</p>
-                        </TooltipContent>
-                      </Tooltip>
+                      <div
+                        key={day.date || `${weekIndex}-${dayIndex}`}
+                        tabIndex={0}
+                        aria-label={countText}
+                        title={countText}
+                        onMouseEnter={(e) => {
+                          const rect = e.currentTarget.getBoundingClientRect();
+                          setTooltip({
+                            text: countText,
+                            x: rect.left + rect.width / 2,
+                            y: rect.top - 6,
+                          });
+                        }}
+                        onFocus={(e) => {
+                          const rect = e.currentTarget.getBoundingClientRect();
+                          setTooltip({
+                            text: countText,
+                            x: rect.left + rect.width / 2,
+                            y: rect.top - 6,
+                          });
+                        }}
+                        onBlur={() => setTooltip(null)}
+                        className={cn(
+                          "rounded-[3px] transition-all duration-150 hover:scale-110 hover:ring-1 hover:ring-foreground/40",
+                          day.level < 0
+                            ? "bg-transparent"
+                            : LEVEL_COLORS[day.level] ?? LEVEL_COLORS[0]
+                        )}
+                        style={{ width: CELL, height: CELL }}
+                      />
                     );
                   })}
                 </div>
@@ -103,7 +132,7 @@ export function GitHubContributionsClient({ initialData }: { initialData: Calend
           </div>
         </div>
 
-        {/* Bottom Metadata row matching original screenshot */}
+        {/* Bottom Metadata row */}
         <div className="mt-5 flex flex-wrap items-center justify-between gap-4 text-[11px] font-medium tracking-wider text-secondary">
           <p className="uppercase">
             <span className="text-foreground font-semibold">{total}</span> CONTRIBUTIONS · 2025–26

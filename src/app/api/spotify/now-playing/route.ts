@@ -71,7 +71,7 @@ function fallbackResponse(setupRequired = false) {
     },
     {
       headers: {
-        "Cache-Control": "no-store",
+        "Cache-Control": "public, s-maxage=30, stale-while-revalidate=60",
       },
     },
   );
@@ -146,7 +146,7 @@ export async function GET() {
     if (nowPlaying.item) {
       return NextResponse.json(serializeTrack(nowPlaying.item, nowPlaying.is_playing), {
         headers: {
-          "Cache-Control": "no-store",
+          "Cache-Control": "public, s-maxage=10, stale-while-revalidate=30",
         },
       });
     }
@@ -172,7 +172,7 @@ export async function GET() {
 
   return NextResponse.json(serializeTrack(recentTrack, false), {
     headers: {
-      "Cache-Control": "no-store",
+      "Cache-Control": "public, s-maxage=15, stale-while-revalidate=45",
     },
   });
 }

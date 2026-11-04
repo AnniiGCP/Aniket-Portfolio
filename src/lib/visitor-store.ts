@@ -2,11 +2,14 @@ import fs from "fs/promises";
 import path from "path";
 
 const DATA_PATH = path.join(process.cwd(), "data", "visitors.json");
+const TMP_PATH = path.join("/tmp", "visitors.json");
 const REDIS_KEY = "portfolio-visitors";
 
 type VisitorData = {
   count: number;
 };
+
+let cachedCount: number | null = null;
 
 function hasRedisConfig() {
   return Boolean(
@@ -49,31 +52,63 @@ async function redisIncr(): Promise<number> {
 }
 
 async function readFileData(): Promise<VisitorData> {
+  // Try reading from /tmp first (for Vercel serverless persistence within container)
   try {
-    const raw = await fs.readFile(DATA_PATH, "utf8");
+    const raw = await fs.readFile(TMP_PATH, "utf8");
     return JSON.parse(raw) as VisitorData;
   } catch {
-    return { count: 0 };
+    // Fall back to data/visitors.json
+    try {
+      const raw = await fs.readFile(DATA_PATH, "utf8");
+      return JSON.parse(raw) as VisitorData;
+    } catch {
+      return { count: cachedCount ?? 138 };
+    }
   }
 }
 
 async function writeFileData(data: VisitorData) {
-  await fs.mkdir(path.dirname(DATA_PATH), { recursive: true });
-  await fs.writeFile(DATA_PATH, JSON.stringify(data, null, 2));
+  cachedCount = data.count;
+  // Try writing to repo path (local dev)
+  try {
+    await fs.mkdir(path.dirname(DATA_PATH), { recursive: true });
+    await fs.writeFile(DATA_PATH, JSON.stringify(data, null, 2));
+    return;
+  } catch {
+    // On Vercel (read-only filesystem), write to /tmp
+    try {
+      await fs.writeFile(TMP_PATH, JSON.stringify(data, null, 2));
+    } catch {
+      // Memory cache is already updated, silently succeed
+    }
+  }
 }
 
 export async function getVisitorCount() {
   if (hasRedisConfig()) {
-    return redisGet();
+    try {
+      return await redisGet();
+    } catch (err) {
+      console.warn("Redis GET failed, falling back to local count:", err);
+    }
+  }
+
+  if (cachedCount !== null) {
+    return cachedCount;
   }
 
   const data = await readFileData();
+  cachedCount = data.count;
   return data.count;
 }
 
 export async function incrementVisitorCount() {
   if (hasRedisConfig()) {
-    return redisIncr();
+    try {
+      return await redisIncr();
+    } catch (err) {
+      console.warn("Redis INCR failed, falling back to local count:", err);
+    }
   }
 
   const data = await readFileData();

@@ -4,30 +4,54 @@ import { useEffect, useState } from "react";
 import { heroConfig } from "@/config/hero";
 import { cn } from "@/lib/utils";
 
+const formatters = new Map<string, Intl.DateTimeFormat>();
+
+function getFormatter(timeZone: string) {
+  let fmt = formatters.get(timeZone);
+  if (!fmt) {
+    try {
+      fmt = new Intl.DateTimeFormat("en", {
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+        timeZone,
+      });
+      formatters.set(timeZone, fmt);
+    } catch {
+      fmt = new Intl.DateTimeFormat("en", {
+        hour: "numeric",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      });
+    }
+  }
+  return fmt;
+}
+
 function formatTime(timeZone: string) {
-  return new Intl.DateTimeFormat("en", {
-    hour: "numeric",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: true,
-    timeZone,
-  }).format(new Date());
+  return getFormatter(timeZone).format(new Date());
 }
 
 function getOffsetMinutes(timeZone: string, date = new Date()) {
-  const parts = new Intl.DateTimeFormat("en", {
-    timeZone,
-    timeZoneName: "shortOffset",
-  }).formatToParts(date);
+  try {
+    const parts = new Intl.DateTimeFormat("en", {
+      timeZone,
+      timeZoneName: "shortOffset",
+    }).formatToParts(date);
 
-  const offset = parts.find((p) => p.type === "timeZoneName")?.value ?? "GMT";
-  const match = offset.match(/GMT([+-])(\d+)(?::(\d+))?/);
-  if (!match) return 0;
+    const offset = parts.find((p) => p.type === "timeZoneName")?.value ?? "GMT";
+    const match = offset.match(/GMT([+-])(\d+)(?::(\d+))?/);
+    if (!match) return 0;
 
-  const sign = match[1] === "-" ? -1 : 1;
-  const hours = Number(match[2]);
-  const minutes = Number(match[3] ?? 0);
-  return sign * (hours * 60 + minutes);
+    const sign = match[1] === "-" ? -1 : 1;
+    const hours = Number(match[2]);
+    const minutes = Number(match[3] ?? 0);
+    return sign * (hours * 60 + minutes);
+  } catch {
+    return 0;
+  }
 }
 
 export function TimezoneWidget({ className }: { className?: string }) {
@@ -37,7 +61,11 @@ export function TimezoneWidget({ className }: { className?: string }) {
   useEffect(() => {
     setVisitorTz(Intl.DateTimeFormat().resolvedOptions().timeZone);
 
-    const interval = setInterval(() => setNow(new Date()), 1_000);
+    const interval = setInterval(() => {
+      if (!document.hidden) {
+        setNow(new Date());
+      }
+    }, 1_000);
     return () => clearInterval(interval);
   }, []);
 

@@ -20,7 +20,18 @@ export function QuoteVisitorCard() {
     if (hasTriggeredRef.current) return;
     hasTriggeredRef.current = true;
 
-    // 2. Record visitor count
+    // 2. Check if we already have the count cached in this browser session
+    try {
+      const cached = sessionStorage.getItem("portfolio_visitor_count");
+      if (cached) {
+        setCount(Number(cached));
+        return;
+      }
+    } catch {
+      // Ignore sessionStorage restrictions if cookies/storage disabled
+    }
+
+    // 3. Record visitor count asynchronously
     const recordVisit = async () => {
       try {
         const res = await fetch("/api/visitors", {
@@ -30,6 +41,11 @@ export function QuoteVisitorCard() {
         if (!res.ok) throw new Error("Count failed");
         const data = (await res.json()) as { count: number };
         setCount(data.count);
+        try {
+          sessionStorage.setItem("portfolio_visitor_count", String(data.count));
+        } catch {
+          // Ignore
+        }
       } catch {
         // Fallback: try reading current count
         try {
@@ -37,6 +53,11 @@ export function QuoteVisitorCard() {
           if (!res.ok) throw new Error("Fallback failed");
           const data = (await res.json()) as { count: number };
           setCount(data.count);
+          try {
+            sessionStorage.setItem("portfolio_visitor_count", String(data.count));
+          } catch {
+            // Ignore
+          }
         } catch {
           setFailed(true);
         }
