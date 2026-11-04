@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import { TechBadge } from "@/components/ui/tech-icon-pill";
-import { Code, Plus, X } from "@phosphor-icons/react";
+import { Code, Plus } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useState } from "react";
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
 import { experience, type ExperienceItem } from "@/config/experience";
+import { cn } from "@/lib/utils";
 
 function ExperienceCard({
   job,
@@ -72,30 +73,47 @@ function ExperienceCard({
               onClick={onToggle}
               aria-expanded={open}
               aria-controls={`experience-${job.company}`}
+              aria-label={open ? `Collapse ${job.company} details` : `Expand ${job.company} details`}
               className="inline-flex size-8 shrink-0 items-center justify-center rounded-md text-secondary transition-colors hover:bg-muted hover:text-foreground"
             >
-              {open ? <X className="size-4" /> : <Plus className="size-4" />}
+              <Plus
+                className={cn(
+                  "size-4 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+                  open ? "-rotate-45 text-foreground" : "rotate-0"
+                )}
+              />
             </button>
           )}
         </div>
       </div>
-      {open && (
+
+      {/* Smooth fluid collapsible accordion */}
+      {hasDetails && (
         <div
           id={`experience-${job.company}`}
-          className="animate-in-up-on-view mt-5 space-y-5 sm:ml-[76px]"
-        >
-          <div className="space-y-2 text-base leading-relaxed text-foreground">
-            {job.details?.map((detail) => (
-              <p key={detail}>{detail}</p>
-            ))}
-          </div>
-          {job.tech && (
-            <div className="flex flex-wrap gap-2 pt-1">
-              {job.tech.map((item) => (
-                <TechBadge key={item} name={item} />
-              ))}
-            </div>
+          className={cn(
+            "grid transition-[grid-template-rows,opacity,margin] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+            open
+              ? "grid-rows-[1fr] opacity-100 mt-5"
+              : "grid-rows-[0fr] opacity-0 mt-0 pointer-events-none"
           )}
+        >
+          <div className="overflow-hidden">
+            <div className="space-y-5 pb-1 sm:ml-[76px]">
+              <div className="space-y-2 text-base leading-relaxed text-foreground">
+                {job.details?.map((detail) => (
+                  <p key={detail}>{detail}</p>
+                ))}
+              </div>
+              {job.tech && (
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {job.tech.map((item) => (
+                    <TechBadge key={item} name={item} />
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       )}
     </article>
