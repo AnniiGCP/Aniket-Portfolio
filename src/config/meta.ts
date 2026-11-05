@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "Aniket Yadav",
-  title: "Aniket Yadav | AI & Software Developer | Cloud & DevOps",
+  title: "Aniket Yadav | Software Developer | Cloud & DevOps",
   description:
-    "Explore Aniket Yadav's developer portfolio featuring AI projects, DevOps workflows, cloud solutions, and modern software engineering.",
+    "Explore Aniket Yadav's portfolio featuring software development, AI projects, cloud technologies, DevOps learning, technical projects and engineering work.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://aniketyadav.tech",
   githubUsername: "AnniiGCP",
   twitterHandle: "@AniketYadav1105",

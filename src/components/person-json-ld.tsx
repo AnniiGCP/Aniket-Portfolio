@@ -15,7 +15,7 @@ export function PersonJsonLd() {
         name: heroConfig.name,
         url: siteConfig.url,
         image: `${siteConfig.url}${heroConfig.avatar}`,
-        jobTitle: "DevOps-focused Software Engineer",
+        jobTitle: "Software Developer | Cloud & DevOps | AI & Developer Tooling",
         description: siteConfig.description,
         email: heroConfig.email,
         address: {
@@ -24,6 +24,27 @@ export function PersonJsonLd() {
           addressRegion: "Karnataka",
           addressCountry: "IN",
         },
+        alumniOf: {
+          "@type": "EducationalOrganization",
+          name: "KS Institute of Technology",
+          location: {
+            "@type": "PostalAddress",
+            addressLocality: "Bengaluru",
+            addressRegion: "Karnataka",
+            addressCountry: "IN",
+          },
+        },
+        hasCredential: [
+          {
+            "@type": "EducationalOccupationalCredential",
+            credentialCategory: "degree",
+            name: "Bachelor of Engineering in Computer Science and Design",
+            recognizedBy: {
+              "@type": "EducationalOrganization",
+              name: "KS Institute of Technology",
+            },
+          },
+        ],
         sameAs: [
           ...profileLinks,
           "https://github.com/AnniiGCP",

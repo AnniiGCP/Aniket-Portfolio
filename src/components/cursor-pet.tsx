@@ -9,8 +9,8 @@ export function CursorPet() {
   return (
     <Script
       src="/oneko/oneko.js"
-      data-cat="/oneko/puppy.png"
-      data-sleep="/oneko/pixel-sleep.png"
+      data-cat="/oneko/cat.png"
+      data-sleep="/oneko/pixel-cat-sleep.png"
       data-name={petConfig.name}
       data-wake-text={petConfig.wakeText}
       data-spawn-x={String(petConfig.spawn.x)}

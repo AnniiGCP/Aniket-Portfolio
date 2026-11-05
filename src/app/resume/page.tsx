@@ -7,7 +7,8 @@ import { createPageMetadata, pageTitle } from "@/lib/metadata";
 
 export const metadata = createPageMetadata({
   title: pageTitle("Resume"),
-  description: resumeConfig.description,
+  description:
+    "Resume of Aniket Yadav — Software Developer specializing in Cloud & DevOps, AI developer tooling, and scalable system engineering.",
   path: "/resume",
 });
 
