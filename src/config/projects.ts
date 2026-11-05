@@ -20,7 +20,7 @@ export const projects: Project[] = [
       "An independent analytics platform calculating Google Cloud Arcade points, tracking cohort milestones, and projecting swag tier readiness with 5,500+ visitors and 5,000+ profiles analyzed.",
     tech: ["React", "TypeScript", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Vercel"],
     href: "https://github.com/AnniiGCP/arcadeverse-dev",
-    website: "https://arcadeverse.vercel.app",
+    website: "https://arcadeverse.netlify.app/",
     featured: true,
     cover: "/assets/projects/arcadeverse.png",
     gradient: "from-emerald-500/25 via-green-500/15 to-lime-500/25",
