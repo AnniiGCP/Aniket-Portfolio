@@ -49,7 +49,7 @@ export function PersonJsonLd() {
           ...profileLinks,
           "https://github.com/AnniiGCP",
           "https://linkedin.com/in/aniketyadav9099/",
-          "https://x.com/AniketYadav1105",
+          "https://x.com/AniketYadavDev",
         ].filter((val, idx, arr) => arr.indexOf(val) === idx),
         knowsAbout: [
           "DevOps",

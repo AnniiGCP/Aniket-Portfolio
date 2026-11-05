@@ -94,7 +94,7 @@ Located in `src/components/person-json-ld.tsx`, the application embeds unambiguo
       "sameAs": [
         "https://github.com/AnniiGCP",
         "https://www.linkedin.com/in/aniketyadav9099/",
-        "https://x.com/AniketYadav1105"
+        "https://x.com/AniketYadavDev"
       ]
     },
     {

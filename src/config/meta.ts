@@ -5,7 +5,7 @@ export const siteConfig = {
     "Explore Aniket Yadav's portfolio featuring software development, AI projects, cloud technologies, DevOps learning, technical projects and engineering work.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://aniketyadav.tech",
   githubUsername: "AnniiGCP",
-  twitterHandle: "@AniketYadav1105",
+  twitterHandle: "@AniketYadavDev",
   ogImage: "/assets/og-image.png",
   ogImageWidth: 1200,
   ogImageHeight: 630,

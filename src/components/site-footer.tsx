@@ -4,7 +4,7 @@ import { Container } from "@/components/container";
 import { GitHubButton } from "@/components/ui/github-button";
 
 const footerSocial = [
-  { name: "X", href: "https://x.com/AniketYadav1105", icon: XLogo },
+  { name: "X", href: "https://x.com/AniketYadavDev", icon: XLogo },
   { name: "LinkedIn", href: "https://linkedin.com/in/aniketyadav9099/", icon: LinkedinLogo },
   { name: "Email", href: "mailto:aniketyadav0078@gmail.com", icon: EnvelopeSimple },
 ];
