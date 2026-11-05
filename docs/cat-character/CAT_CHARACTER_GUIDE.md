@@ -32,8 +32,8 @@
 | **Scratch Wall East** | Reaches up and scratches the right screen border | Autonomous RNG when `nekoPosX > window.innerWidth - 32` | Automatic | 10 frames (~1s) | Returns to default idle | `idle()` line 357; sprite: `scratchWallE` (`[-2,-2], [-2,-3]`) |
 | **Scratch Wall North** | Reaches up and scratches the top screen border | Autonomous RNG when `nekoPosY < 32` | Automatic | 10 frames (~1s) | Returns to default idle | `idle()` line 355; sprite: `scratchWallN` (`[0,0], [0,-1]`) |
 | **Scratch Wall South** | Reaches down and scratches the bottom border | Autonomous RNG when `nekoPosY > window.innerHeight - 32` | Automatic | 10 frames (~1s) | Returns to default idle | `idle()` line 356; sprite: `scratchWallS` (`[-7,-1], [-6,-2]`) |
-| **Spontaneous Nap** | Shows tired yawn/droop, curls into ball and sleeps | Autonomous RNG during prolonged idle | Automatic | 8 frames tired + 192 frames sleeping (~20s) | Automatically wakes up and returns to default idle | `idle()` lines 345-354; sprites: `tired` (`[-3,-2]`), `sleeping` (`[-2,0], [-2,-1]`) |
-| **Interactive Sleep (Click)** | Curls into ball (`pixel-cat-sleep.png`) + separate CSS `z-z-Z` appears | Left click (desktop) or tap (mobile) on Pixel | User-driven (click) | Indefinite until clicked or tapped again | Stays asleep until user wakes Pixel | `goToSleep()` lines 278-291; asset: `pixel-cat-sleep.png` |
+| **Autonomous Nap (Unclicked)** | Shows tired face, curls into ball with animated 2 `z z` expanding/contracting | Prolonged idle when unclicked (~every 20s at random) | Automatic | 8 frames tired + 192 frames sleeping (~20s) | Automatically wakes up and returns to default idle | `idle()` lines 345-354; `cat.png` frames `[-2,0]` & `[-2,-1]` |
+| **Interactive Sleep (Clicked)** | Curls into clean sleeping ball (`pixel-cat-sleep.png`) + 3 separate floating CSS `z z Z` letters appear | Left click (desktop) or tap (mobile) on Pixel | User-driven (click) | Indefinite until clicked or tapped again | Stays asleep until user wakes Pixel | `goToSleep()` lines 278-291; `pixel-cat-sleep.png` + `#pixel-zzz` |
 | **Wake Up (Click)** | Jumps up into Alert stance, hides ZZZ and hint | Left click (desktop) or tap (mobile) while asleep | User-driven (click) | Instant | Enters alert mode, then resumes cursor tracking | `wakeUp()` lines 293-309 |
 | **Wake Up Tooltip** | Displays floating badge: `"Wake up Pixel"` below cat | Hover cursor over sleeping cat | User-driven (hover) | While hovered | Hides when mouse leaves cat | `mouseenter` / `mouseleave` lines 185-198; `#pixel-wake-hint` |
 | **Separate ZZZ Float** | Cascading `z z Z` letters gently floating upwards | Active while `isAsleep === true` | Tied to sleep state | Continuous CSS loop | Instantly hidden on wakeup | `positionZzz()` lines 261-265; `#pixel-zzz` in `globals.css` |
@@ -84,12 +84,12 @@ stateDiagram-v2
 ### 5.1 Normal Cat Asset
 - **File:** `public/oneko/cat.png`
 - **Format:** 256×128 RGBA Transparent PNG (8 columns × 4 rows of 32×32 pixel sprites).
-- **Embedded ZZZ:** Completely removed from both sleeping frames (`col 2, row 0` and `col 2, row 1`).
+- **Embedded ZZZ:** Retained in both autonomous sleeping frames (`col 2, row 0` and `col 2, row 1`) to provide the authentic 2-frame animated pixel art `z z` whenever the cat naturally falls asleep while active without being clicked (Image 1).
 
-### 5.2 Sleeping Cat Asset
+### 5.2 Interactive Sleeping Cat Asset
 - **File:** `public/oneko/pixel-cat-sleep.png`
 - **Format:** 32×32 RGBA Transparent PNG.
-- **Embedded ZZZ:** Cleaned and removed (`y=9..14, x=8..13` and `y=10..14, x=18..21`). Cat sleeping pose, face, ears, tail, and body are 100% preserved.
+- **Embedded ZZZ:** Cleaned and removed (`y=9..14, x=8..13` and `y=10..14, x=18..21`). Used exclusively when the user clicks the cat, pairing with the 3 floating CSS `z z Z` letters (`#pixel-zzz`) with zero duplicates (Image 3).
 
 ### 5.3 Separate ZZZ Animation
 - **DOM Element:** `#pixel-zzz` (Created dynamically in `public/oneko/oneko.js` line 171: `document.createElement("div")`).
