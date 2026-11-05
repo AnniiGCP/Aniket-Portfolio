@@ -1,6 +1,9 @@
 // oneko.js: https://github.com/adryd325/oneko.js
 
 (function oneko() {
+  if (typeof window === "undefined" || typeof document === "undefined") return;
+  if (document.getElementById("pixel") || document.getElementById("oneko")) return;
+
   const isReducedMotion =
     window.matchMedia(`(prefers-reduced-motion: reduce)`) === true ||
     window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
@@ -25,9 +28,9 @@
   let wakeHintEl = null;
   let zzzEl = null;
   let wakeText = "Wake up Pixel";
-  let petName = "";
-  let nekoFile = "./oneko.gif";
-  let sleepFile = "./oneko/pixel-sleep.png";
+  let petName = "Pixel";
+  let nekoFile = "/oneko/cat.png";
+  let sleepFile = "/oneko/pixel-cat-sleep.png";
 
   const nekoSpeed = 10;
   const spriteSets = {
@@ -95,7 +98,7 @@
 
   function init() {
     nekoFile = "./oneko.gif";
-    const curScript = document.currentScript;
+    const curScript = document.currentScript || document.querySelector('script[data-cat]') || document.querySelector('script[src*="oneko"]');
     if (curScript && curScript.dataset.cat) {
       nekoFile = curScript.dataset.cat;
     }
@@ -152,6 +155,9 @@
     nekoEl.style.position = "fixed";
     nekoEl.style.pointerEvents = "auto";
     nekoEl.style.cursor = "pointer";
+    nekoEl.style.userSelect = "none";
+    nekoEl.style.webkitUserSelect = "none";
+    nekoEl.setAttribute("draggable", "false");
     nekoEl.style.imageRendering = "pixelated";
     nekoEl.style.left = "0px";
     nekoEl.style.top = "0px";
@@ -161,6 +167,10 @@
 
     nekoEl.style.backgroundImage = `url(${nekoFile})`;
     
+    try {
+      const p1 = new Image(); p1.src = nekoFile;
+      const p2 = new Image(); p2.src = sleepFile;
+    } catch (_) {}
     document.body.appendChild(nekoEl);
 
     wakeHintEl = document.createElement("div");
@@ -175,6 +185,7 @@
 
     nekoEl.addEventListener("click", function (event) {
       event.stopPropagation();
+      event.preventDefault();
       if (isAsleep) {
         wakeUp();
       } else {
@@ -272,7 +283,7 @@
 
   function applyAwakePose() {
     nekoEl.style.backgroundImage = `url(${nekoFile})`;
-    nekoEl.style.backgroundSize = "";
+    nekoEl.style.backgroundSize = "auto";
   }
 
   function goToSleep() {
@@ -309,7 +320,6 @@
   }
 
   function renderSleeping() {
-    applySleepPose();
     positionZzz();
   }
 
@@ -380,6 +390,8 @@
       return;
     }
 
+    if (!Number.isFinite(nekoPosX) || !Number.isFinite(nekoPosY)) { nekoPosX = 40; nekoPosY = 28; }
+    if (!Number.isFinite(mousePosX) || !Number.isFinite(mousePosY)) { mousePosX = nekoPosX; mousePosY = nekoPosY; }
     const diffX = nekoPosX - mousePosX;
     const diffY = nekoPosY - mousePosY;
     const distance = Math.sqrt(diffX ** 2 + diffY ** 2);
