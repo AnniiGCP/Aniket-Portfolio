@@ -28,7 +28,7 @@ export const aboutConfig = {
       "I am currently in my final years studying Computer Science and Design at KS Institute of Technology in Bengaluru. From the beginning, my focus has been on understanding how software systems actually work under the hood — from low-level systems to modern interfaces.",
       "Rather than only following tutorials, I learn by building practical projects. To help cloud learners, I created **ArcadeVerse**, a tracking and analytics platform that has audited over 5,000+ public profiles and served 5,500+ unique visitors.",
       "I love the problem-solving intensity of competitive hackathons. At the National Level HIRE-4-THON 2026 Hackathon, my team (Unpaid Labors) secured **Second Place** with QuizGenAI, an automated assessment engine built with contract-first FastAPI schemas.",
-      "I also have an incoming software engineering opportunity with **Allegion** through campus placement. As I prepare for my engineering career, I am diving deep into enterprise cloud infrastructure, CI/CD automation, and intelligent developer assistants like **CodeBrain AI**.",
+      "I also have an incoming software engineering opportunity with **Allegion** through campus placement. As I prepare for my engineering career, I am diving deep into enterprise cloud infrastructure, CI/CD automation, and intelligent developer assistants like **CodeBrain**.",
     ],
   },
   principles: {

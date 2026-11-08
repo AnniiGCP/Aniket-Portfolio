@@ -1,5 +1,5 @@
 ---
-title: "CodeBrain AI"
+title: "CodeBrain"
 description: "AI-Powered Codebase Understanding & Documentation Assistant with CI/CD Integration."
 date: "10.2026"
 tech: ["Python", "FastAPI", "React", "TypeScript", "Docker", "FAISS"]
@@ -7,7 +7,7 @@ tech: ["Python", "FastAPI", "React", "TypeScript", "Docker", "FAISS"]
 
 ## Introduction
 
-**CodeBrain AI** is an intelligent developer acceleration and codebase comprehension tool built to eliminate the steep onboarding curve of large, complex, and legacy software repositories. Rather than treating source code as plain text, CodeBrain integrates concrete syntax tree parsing via Tree-sitter with dense semantic vector indexing and Large Language Model reasoning.
+**CodeBrain** is an intelligent developer acceleration and codebase comprehension tool built to eliminate the steep onboarding curve of large, complex, and legacy software repositories. Rather than treating source code as plain text, CodeBrain integrates concrete syntax tree parsing via Tree-sitter with dense semantic vector indexing and Large Language Model reasoning.
 
 It empowers software engineers, engineering managers, and open-source contributors to query unfamiliar codebases in natural language, generate living architectural documentation, and autonomously diagnose CI/CD build failures with pinpoint pull request comments.
 
@@ -38,7 +38,7 @@ Standard code search tools like `grep` only match exact string patterns, while g
 
 ## System architecture
 
-CodeBrain AI uses a modular client-server architecture:
+CodeBrain uses a modular client-server architecture:
 - **Frontend layer:** Built with React, Next.js, and TypeScript, styled with Tailwind CSS, providing responsive query consoles and syntax-highlighted code diff viewers.
 - **Service layer:** Asynchronous Python backend powered by FastAPI and Uvicorn, handling concurrent repository parsing tasks and streaming responses.
 - **Parser & indexer:** Tree-sitter bindings for multi-language AST generation paired with FAISS for sub-millisecond similarity search across thousands of vectors.
@@ -81,6 +81,6 @@ General LLMs frequently invent non-existent file paths or function names. By str
 
 ## What I learned
 
-Building CodeBrain AI taught me that effective AI developer tools require deep integration with compiler and parser fundamentals. Large language models become exponentially more useful when paired with authoritative deterministic systems like Abstract Syntax Trees and strict schema validation.
+Building CodeBrain taught me that effective AI developer tools require deep integration with compiler and parser fundamentals. Large language models become exponentially more useful when paired with authoritative deterministic systems like Abstract Syntax Trees and strict schema validation.
 
 [Explore CodeBrain on GitHub](https://github.com/AnniiGCP/CodeBrain) · [Visit CodeBrain Live](https://codebrain-dev.vercel.app/)

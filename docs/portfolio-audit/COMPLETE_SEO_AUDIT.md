@@ -44,7 +44,7 @@ Metadata is managed dynamically through `createPageMetadata()` (`src/lib/metadat
 | `/` | `Aniket Yadav \| Software Developer, AI & Cloud` | 158 chars | `https://aniketyadav.tech/` |
 | `/about` | `About \| Aniket Yadav` | 134 chars | `https://aniketyadav.tech/about` |
 | `/projects` | `Projects \| Aniket Yadav` | 148 chars | `https://aniketyadav.tech/projects` |
-| `/projects/codebrain-ai` | `CodeBrain AI \| Projects \| Aniket Yadav` | 118 chars | `https://aniketyadav.tech/projects/codebrain-ai` |
+| `/projects/codebrain-ai` | `CodeBrain \| Projects \| Aniket Yadav` | 115 chars | `https://aniketyadav.tech/projects/codebrain-ai` |
 | `/projects/arcadeverse` | `ArcadeVerse \| Projects \| Aniket Yadav` | 142 chars | `https://aniketyadav.tech/projects/arcadeverse` |
 | `/projects/quizgen-ai` | `QuizGenAI \| Projects \| Aniket Yadav` | 132 chars | `https://aniketyadav.tech/projects/quizgen-ai` |
 | `/projects/guardian-ai` | `Guardian AI \| Projects \| Aniket Yadav` | 139 chars | `https://aniketyadav.tech/projects/guardian-ai` |

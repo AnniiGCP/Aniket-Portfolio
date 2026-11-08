@@ -27,7 +27,7 @@ export const projects: Project[] = [
   },
   {
     slug: "codebrain-ai",
-    title: "CodeBrain AI",
+    title: "CodeBrain",
     date: "10.2026",
     description:
       "An AI-powered developer tool designed to help developers understand, document, analyze and improve existing codebases through intelligent AST analysis, vector RAG, and CI/CD diagnostic integration.",
