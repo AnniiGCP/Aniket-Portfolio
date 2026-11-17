@@ -261,6 +261,7 @@
   function resetIdleAnimation() {
     idleAnimation = null;
     idleAnimationFrame = 0;
+    idleTime = 0;
   }
 
   function positionWakeHint() {
@@ -326,13 +327,13 @@
   function idle() {
     idleTime += 1;
 
-    // every ~ 20 seconds
+    // Trigger autonomous behavior after sitting still for 3 to 5 seconds (30 to 50 frames @ 10fps)
     if (
-      idleTime > 10 &&
-      Math.floor(Math.random() * 200) == 0 &&
+      idleTime >= 30 &&
+      (Math.floor(Math.random() * 20) === 0 || idleTime >= 50) &&
       idleAnimation == null
     ) {
-      let avalibleIdleAnimations = ["sleeping", "scratchSelf"];
+      let avalibleIdleAnimations = ["scratchSelf", "scratchSelf", "sleeping"];
       if (nekoPosX < 32) {
         avalibleIdleAnimations.push("scratchWallW");
       }
