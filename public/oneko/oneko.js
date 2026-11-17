@@ -23,6 +23,7 @@
   let idleTime = 0;
   let idleAnimation = null;
   let idleAnimationFrame = 0;
+  let nextScratchTime = 30 + Math.floor(Math.random() * 20); // 3 to 5 seconds @ 10fps
   let isAsleep = false;
   let sleepAnimationFrame = 0;
   let wakeHintEl = null;
@@ -262,6 +263,7 @@
     idleAnimation = null;
     idleAnimationFrame = 0;
     idleTime = 0;
+    nextScratchTime = 30 + Math.floor(Math.random() * 20);
   }
 
   function positionWakeHint() {
@@ -292,6 +294,7 @@
     sleepAnimationFrame = 0;
     idleAnimation = null;
     idleAnimationFrame = 0;
+    nextScratchTime = 30 + Math.floor(Math.random() * 20);
     idleTime = 0;
     nekoEl.classList.add("is-asleep");
     nekoEl.setAttribute("aria-label", wakeText);
@@ -327,29 +330,32 @@
   function idle() {
     idleTime += 1;
 
-    // Trigger autonomous behavior after sitting still for 3 to 5 seconds (30 to 50 frames @ 10fps)
-    if (
-      idleTime >= 30 &&
-      (Math.floor(Math.random() * 20) === 0 || idleTime >= 50) &&
-      idleAnimation == null
-    ) {
-      let avalibleIdleAnimations = ["scratchSelf", "scratchSelf", "sleeping"];
+    // 1. Spontaneous nap after sitting idle for 15 seconds (150 frames @ 10fps)
+    if (idleTime >= 150 && idleAnimation == null) {
+      idleAnimation = "sleeping";
+      idleAnimationFrame = 0;
+    }
+
+    // 2. Ear / Wall scratches every 3 to 5 seconds (30 to 50 frames @ 10fps) while idle (< 15s)
+    if (idleTime >= nextScratchTime && idleTime < 150 && idleAnimation == null) {
+      let avalibleScratchAnimations = ["scratchSelf"];
       if (nekoPosX < 32) {
-        avalibleIdleAnimations.push("scratchWallW");
+        avalibleScratchAnimations.push("scratchWallW");
       }
       if (nekoPosY < 32) {
-        avalibleIdleAnimations.push("scratchWallN");
+        avalibleScratchAnimations.push("scratchWallN");
       }
       if (nekoPosX > window.innerWidth - 32) {
-        avalibleIdleAnimations.push("scratchWallE");
+        avalibleScratchAnimations.push("scratchWallE");
       }
       if (nekoPosY > window.innerHeight - 32) {
-        avalibleIdleAnimations.push("scratchWallS");
+        avalibleScratchAnimations.push("scratchWallS");
       }
       idleAnimation =
-        avalibleIdleAnimations[
-          Math.floor(Math.random() * avalibleIdleAnimations.length)
+        avalibleScratchAnimations[
+          Math.floor(Math.random() * avalibleScratchAnimations.length)
         ];
+      idleAnimationFrame = 0;
     }
 
     switch (idleAnimation) {
@@ -370,7 +376,10 @@
       case "scratchSelf":
         setSprite(idleAnimation, idleAnimationFrame);
         if (idleAnimationFrame > 9) {
-          resetIdleAnimation();
+          idleAnimation = null;
+          idleAnimationFrame = 0;
+          // Schedule next scratch in 3 to 5 seconds
+          nextScratchTime = idleTime + 30 + Math.floor(Math.random() * 20);
         }
         break;
       default:
@@ -404,6 +413,7 @@
 
     idleAnimation = null;
     idleAnimationFrame = 0;
+    nextScratchTime = 30 + Math.floor(Math.random() * 20);
 
     if (idleTime > 1) {
       setSprite("alert", 0);
